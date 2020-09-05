@@ -30,78 +30,80 @@
 	    <div id="top_location"></div>
 	    
 	    <div class="collections_pg">
-	    	<div id="curator_list">
-	    		{% for index_col in index_collections %}
-		       	<input type="radio" name="collection" value="{{ index_col.slug }}" onclick="collection_url('{{index_col.slug}}')">
-				<label for="{{ index_col.slug }}">{{ index_col }}</label><br>
-				{% endfor %}
-			</div>
-			{% if curated_entries %}
-			<div id="collections_list" class="main_index_style">
-       			{% endif %}
-				{% for index in curated_entries %}
+	    	{% cache 604800 preview_index_collection index_collection.id %}
+		    	<div id="curator_list">
+		    		{% for index_col in index_collections %}
+			       	<input type="radio" name="collection" value="{{ index_col.slug }}" onclick="collection_url('{{index_col.slug}}')">
+					<label for="{{ index_col.slug }}">{{ index_col }}</label><br>
+					{% endfor %}
+				</div>
+				{% if curated_entries %}
+				<div id="collections_list" class="main_index_style">
+	       			{% endif %}
+					{% for index in curated_entries %}
 
-            		<div class="grid-container" onclick="slideIndex_drawer(this, '{{index.slug}}'); add_to_trail('{{ index.slug }}')" id="{{index.slug}}">
+	            		<div class="grid-container" onclick="slideIndex_drawer(this, '{{index.slug}}'); add_to_trail('{{ index.slug }}')" id="{{index.slug}}">
 
-	                    <div class="sm num"><p class="cr">{{ index.rownum }}</p></div>
-	                    <div class="sm">
-	                    	<p>
-                          {% if index.end_date == None and index.pub_date != None %}
-                              {{ index.pub_date }}
-                          {% endif %}
-                          {% if index.end_date != None %}
-                              {{ index.pub_date }}–<br>
-                              {{ index.end_date }}
-                          {% endif %}
-                        </p>
-	                	  </div>
-	                    <div class="lg"><p>{{ index.title }}</p></div>
-	                    <div class="md"><p>
-	                        {% if index.author_founder != None %}
-	                        {{ index.author_founder|markdown }}
-	                        {% else %}
-	                        {% endif %}
-	                    </p></div>
-	                </div>	
-	                <div class="index_drawer closed">
-	                    <div class="drawer_content">
-	                        <p class="about_text">{{ index.about|markdown }}</p>
-		                    {% if index.contributed_by != None %}
-	                        <p>{{ index.contributed_by }}</p>
-	                        {% endif %}
-	                        <p class="external_links">
-	                            {% if index.external_link != None %}
-	                            <a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
-	                            {% endif %}
-	                            {% if index.external_link_two != None %}
-	                            <a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
-	                            {% endif %}
+		                    <div class="sm num"><p class="cr">{{ index.rownum }}</p></div>
+		                    <div class="sm">
+		                    	<p>
+	                          {% if index.end_date == None and index.pub_date != None %}
+	                              {{ index.pub_date }}
+	                          {% endif %}
+	                          {% if index.end_date != None %}
+	                              {{ index.pub_date }}–<br>
+	                              {{ index.end_date }}
+	                          {% endif %}
 	                        </p>
-	                        {% if index.location != None %}
-	                        <p>{{ index.location }}</p>
-	                        {% endif %}
-	                        <div class="img_section">
-	                            {% for loop_cycle in index.images_list.all %}
-	                                {% image loop_cycle.images height-220 as img %} 
-	                                {% if loop_cycle.images is None %}
-	                                {% else %}
-	                                    <div class="img_container">
-	                                        <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-	                                        <p class="caption">{{ loop_cycle.caption|markdown }}</p>
-	                                    </div>
-	                                {% endif %}
-	                            {% endfor %}
-	                        </div>
-	                        {% for cat in index.categories.all %}
-	                            {% if cat.name != None %}
-	                             <span>
-	                                <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
-	                            </span>
-	                            {% endif %}
-	                        {% endfor %}
-	                    </div>
-                	</div>
-		    	{% endfor %}
+		                	  </div>
+		                    <div class="lg"><p>{{ index.title }}</p></div>
+		                    <div class="md"><p>
+		                        {% if index.author_founder != None %}
+		                        {{ index.author_founder|markdown }}
+		                        {% else %}
+		                        {% endif %}
+		                    </p></div>
+		                </div>	
+		                <div class="index_drawer closed">
+		                    <div class="drawer_content">
+		                        <p class="about_text">{{ index.about|markdown }}</p>
+			                    {% if index.contributed_by != None %}
+		                        <p>{{ index.contributed_by }}</p>
+		                        {% endif %}
+		                        <p class="external_links">
+		                            {% if index.external_link != None %}
+		                            <a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
+		                            {% endif %}
+		                            {% if index.external_link_two != None %}
+		                            <a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
+		                            {% endif %}
+		                        </p>
+		                        {% if index.location != None %}
+		                        <p>{{ index.location }}</p>
+		                        {% endif %}
+		                        <div class="img_section">
+		                            {% for loop_cycle in index.images_list.all %}
+		                                {% image loop_cycle.images height-220 as img %} 
+		                                {% if loop_cycle.images is None %}
+		                                {% else %}
+		                                    <div class="img_container">
+		                                        <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+		                                        <p class="caption">{{ loop_cycle.caption|markdown }}</p>
+		                                    </div>
+		                                {% endif %}
+		                            {% endfor %}
+		                        </div>
+		                        {% for cat in index.categories.all %}
+		                            {% if cat.name != None %}
+		                             <span>
+		                                <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
+		                            </span>
+		                            {% endif %}
+		                        {% endfor %}
+		                    </div>
+	                	</div>
+			    	{% endfor %}
+			    {% endcache %}
 	    	</div>
         <div class="bottom-buttons">
           <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>

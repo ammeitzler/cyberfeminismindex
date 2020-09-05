@@ -34,11 +34,11 @@
         <div id="top_location"></div>
 	    
 	  	<div class="images_pg main_index_style gallery">
-            <!-- {% cache 604800 preview_index_image index_image.id %} -->
+            {% cache 604800 preview_index_image index_image.id %}
                 {% for index in image_entries %}
               
                   {% for loop_cycle in index.images_list.all %}
-                      {% image loop_cycle.images height-420 as img %} 
+                      {% image loop_cycle.images original as img %} 
                       {% if loop_cycle.images is None %}
                       {% else %}
                           <div class="img_container">
@@ -49,7 +49,7 @@
                   {% endfor %}
                 
                 {% endfor %}
-            <!-- {% endcache %}  -->
+            {% endcache %} 
     	</div>
       <div class="bottom-buttons">
         <button class="back_to_top" onclick="back_to_top('top_location')">back to top</button>
