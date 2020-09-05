@@ -1,0 +1,12 @@
+*.pyc
+.DS_Store
+*.swp
+/venv/
+.venv/
+/static/
+# /media/
+/cache/
+cache/
+# db.sqlite3
+
+.vscode/

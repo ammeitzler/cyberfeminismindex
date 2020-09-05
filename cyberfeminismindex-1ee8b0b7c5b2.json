@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cyberfeminismindex",
+  "private_key_id": "1ee8b0b7c5b26970bea070ebb34fe33da0eda3b9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDSzlNTVTYC870G\nJAlFlNTvccRng0jJ4mfgb1tfNs1YkPjmjW7irXgiGB71pjHz4Qc6B+WYHIyVi0B1\np1vffZXuTJFFIvSokql0oAgROGz7NIpz+9z3OQ+Z96O8+EBfnkRh8DdA5dciv4Kq\nW7MRt1zPM/rBKd7jgw2vmGpnnwmiXKniqrCs9AQjCdBNvHXNykhAiPrpsNGkkUcP\nsoAyzMw/9zBj0Zvczxd32Iup5ZtcfvO8/ylpDdEqClj4ZxageYmpoaA7+5FBwqEy\nG2nn7pI3i3rGR0iYvQJU86+4L6LiDpiJC2Yx2BrcpHvKA9lWb2WrHtcO/wlN+pqV\nPfC6B2aZAgMBAAECggEAXyZr6+hBSdHUVwo6+SI1fqJ+QS670wwTUPVSa8ajpz9A\naWgbTct4twLmLoDGeUrv5RydYCw6tGE3RiO1T0ozO21qAKfHgLM6M37sRUGPx08u\n0y0yzo/938QsLuZqv/4C5aX0eqGDmpaQlu5vBCcciBXxL/EDPvPvYHvOQ1lAkvyo\nmWuvs7njWNczijDqsvmOt9q8bP+DCLWN0B8YxU7KV8OAk6RjKn9IoUTpytBA3ZUU\nq1jrSlU7BSLh78WccDxSixmELfMdyBedQA280FZsoP8xjW+m4vfG3KB9R5kz54IJ\nJoYZ3QsdsSusEIWf5IcuBLRzvMT3z2Ef3ke/GYo/pQKBgQDtp8aTsJSeSVpRK3nI\n0RrNHnSvWHWGThZcAxsMpFoVKXRr+xy2kT3PuUFfZugNWPlU5KDtrj1jrrYCKohy\nPbsRPeazWngMluF5m2jXxOQCXiE+0X4VW+WJXGeYP/0OhY/zaUZy4o2YcRQktBx1\naML5+pRQ2uZ8Qws8MlIoiOv8PwKBgQDjE/zqRMTDj3Zbt6mk9y3eoH7259FFd+XI\nzqvrZXcxQ2AjiOaL6CuKUz00CRfrEK96i7Z1GKWudob3LZ+sHYD5vKe158beGSXf\n7RND8gw5S4E/590KnAYGZPbMf1VHTok2+iomOtUrXXROoytL2eF3WQsEnRC2wMKq\n50OyX0HHJwKBgCWOryYl8Ma3Buvu9/cRfK/P0VbonuITsxrlbr/ntUjE3V43OAlu\nGJucRkWCaMe7OOP+oaQONitrr93VxOxw7wBBjRTpBjHPImDqe34l4naxU4Wu68MK\nW9MCZGi+LArAdshb6cM8JG5j6HAIerrfTHje7dN9VJFssvjXZv567PhXAoGAEwsC\nEsNhnOTTEC3+1A7GkfzzqNEYA7NiWcy7Lip8LG1yCojYjLMTs633W/3HO7dSf/xn\neLpwaokWGHSDB3QR9N+VUPP3AXkqa/T9wJzz2XozhKB1MQaUmsSszcl/5VL4vtuL\n3Vjht5lGv7F/WAUVm2SkP+bMGAdiS+LJEpRad9ECgYAwkce6GvA98HPY8K/2GpIw\nu8V6kupxI1umSvgHxtG7BxE+BcCAna2QyhwIlJXlTHPQoI77ImPyezSLcbP6frya\nfbr4comkQoYkYNiBMIQmXrEXw6BZcDQ6j2L/4xKYoijJGaqUq8LB5uFZYHa28Cp+\ne0Lm9yGJ718uAV3d0UmYEw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cyberfem@cyberfeminismindex.iam.gserviceaccount.com",
+  "client_id": "102648061710985196145",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cyberfem%40cyberfeminismindex.iam.gserviceaccount.com"
+}

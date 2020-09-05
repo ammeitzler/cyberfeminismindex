@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+{% load static wagtailuserbar menu_tags %}
+{% get_menu "main" as navigation %}
+{% load wagtailmarkdown %}
+
+
+	<div class="left_content" id="left_index">
+	    <header>
+	        <div class="menu_section">
+	            <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)">
+	                <option disabled selected value></option>
+	                {% for item in navigation.menu_items.all %}
+	                <option value="{{ item.title }}">{{ item.title }}</option>
+	                {% endfor %}
+	            </select>
+	        </div>
+	    </header>
+
+	    <div class="internal_pg_container about_pg">
+	    	
+	    	<form id="about_form" name="submit-to-google-sheet">
+	    		<p><input name="your_name" type="your_name" placeholder="Your Name" required><br></p>
+	    		<p><input name="email" type="email" placeholder="Email" required><br><p>
+		  		<p><input name="title" type="title" placeholder="Title" required><br></p>
+		  		<p><input name="names" type="names" placeholder="Names(s)" required><br></p>
+		  		<p><input name="links" type="links" placeholder="Link(s)"></p>
+		  		<p><input name="dates" type="dates" placeholder="Date(s)"></p>
+		  		<p></p>
+		  		<button type="submit">submit</button>
+			</form>
+
+			
+			<!-- script for google sheets -->
+			<script>
+			  const scriptURL = 'https://script.google.com/macros/s/AKfycbwNbE7C9sXyei6NYQ-efXHg4gzCKTwKXHiMy-1diNi9hkOW-KZv/exec'
+			  const form = document.forms['submit-to-google-sheet']
+
+			  form.addEventListener('submit', e => {
+			    e.preventDefault()
+			    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			      .then(function(response) {
+			      	return response.json()
+			      }).then(function(data){
+			      	alert("Thank you!")
+			      })
+			      .catch(error => console.error('Error!', error.message))
+			  })
+			</script>
+   	</div>
+
+
+</script>
+{% endblock %}

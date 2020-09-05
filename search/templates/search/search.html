@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags cache %}
+{% block body_class %}template-searchresults{% endblock %}
+{% block title %}Search{% endblock %}
+{% block content %}
+{% load wagtailmarkdown %}
+
+<script type="text/javascript">
+    index_json = {{ json_dict|safe }};
+    index_img_json = {{ json_img_dict|safe }};
+</script>
+
+    <div class="left_content" id="left_index">
+        <header>
+            <div class="menu_section">
+                <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)">
+                    <option disabled selected value></option>
+                    {% for item in navigation.menu_items.all %}
+                    <option value="{{ item.title }}">{{ item.title }}</option>
+                    {% endfor %}
+                </select>
+                <div id="green_box"></div>
+            </div>
+        </header>
+        <div id="top_location"></div>
+
+        <div class="search_pg">
+            <form action="{% url 'search' %}" method="get">
+                <input id="user-input" type="text" placeholder="enter search term" action=”{{ search_query }}” name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                <input type="submit" style="display: none" />
+            </form> 
+
+            <div id="categories_list">
+                {% for cat in search_categories %}
+                <input type="radio" name="categories_search_pg" value="{{ cat.slug }}" onclick="search_url('{{cat.slug}}')">
+                <label for="{{ cat.slug }}">{{ cat.name }}</label><br>
+                {% endfor %}
+            </div>
+            
+
+            {# search-list section #}
+          <div id="replaceable-content" class="col-6">
+            {% include 'search/search-results-partial.html' %}
+          </div>
+
+            {% if search_results %}
+                {% for result in search_results %}
+            <div id="search_list" class="main_index_style">
+                    <div class="grid-container" onclick="slideIndex_drawer(this, '{{result.slug}}'); add_to_trail('{{ result.slug }}')" id="{{result.slug}}">
+                        <div class="sm num"><p class="cr">({{ result.rownum }})</p></div>
+                        <div class="sm"><p>
+                            {% if result.pub_date != None %}
+                                {{ result.pub_date }}
+                            {% endif %}
+                            {% if result.end_date != None %}
+                                {{ result.pub_date }}–<br>
+                                {{ result.end_date }}
+                            {% endif %}
+                        </p></div>
+                        <div class="lg"><p>{{ result.title }}</p></div>
+                        <div class="md"><p>
+                            {% if result.author_founder != None %}
+                            {{ result.author_founder|markdown }}
+                            {% else %}
+                            {% endif %}
+                        </p></div>
+                    </div>
+                    <div class="index_drawer closed">
+                        <div class="drawer_content">
+                            <p class="about_text">{{ result.about|markdown }}</p>
+                            {% if result.contributed_by != None %}
+                            <p>{{ result.contributed_by }}</p>
+                            {% endif %}
+                            <p class="external_links">
+                                {% if result.external_link != None %}
+                                <a href="{{result.external_link}}" target="_blank">{{ result.external_link }}</a>
+                                {% endif %}
+                                {% if result.external_link_two != None %}
+                                <a href="{{result.external_link_two}}" target="_blank">{{ result.external_link_two }}</a>
+                                {% endif %}
+                            </p>
+                            {% if result.location != None %}
+                            <p>{{ result.location }}</p>
+                            {% endif %}
+                            <div class="img_section">
+                                {% for loop_cycle in result.images_list.all %}
+                                    {% image loop_cycle.images height-220 as img %} 
+                                    {% if loop_cycle.images is None %}
+                                    {% else %}
+                                        <div class="img_container">
+                                            <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+                                            <p class="caption">{{ loop_cycle.caption|markdown }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% for cat in result.categories.all %}
+                                {% if cat.name != None %}
+                                 <span>
+                                    <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
+                                </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>  
+                    {% if result.search_description %}
+                        {{ result.search_description }}
+                    {% endif %}
+                {% endfor %}
+
+            {% elif search_query %}
+                <p class="no_results">No results found</p>
+            {% endif %}
+            </div>
+            <button class="go" onclick="back_to_top('top_location')">go</button>
+            <div class="bottom-buttons">
+              <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
+              <button class="submit"><a href="submit">submit</a></button>
+            </div>
+    </div>
+
+    <script>
+        const user_input = $("#user-input")
+        const search_list = $("#search_list")
+        const artists_div = $('#replaceable-content')
+        const endpoint = '/ajax/search/'
+        const delay_by_in_ms = 1000
+        let scheduled_function = false
+
+        let ajax_call = function (endpoint, request_parameters) {
+            $.getJSON(endpoint, request_parameters)
+                .done(response => {
+                    // fade out the artists_div, then:
+                    artists_div.fadeTo('fast', 0).promise().then(() => {
+                        // replace the HTML contents
+                        artists_div.html(response['html_from_view'])
+                        // fade-in the div with new contents
+                        artists_div.fadeTo('fast', 1)
+                    })
+                })
+        }
+        user_input.on('keyup', function () {
+            search_list.hide()
+            const request_parameters = {
+                q: $(this).val() // value of user_input: the HTML element with ID user-input
+            }
+            // if scheduled_function is NOT false, cancel the execution of the function
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+            // setTimeout returns the ID of the function to be executed
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+    </script>
+{% endblock %}

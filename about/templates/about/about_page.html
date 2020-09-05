@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+{% load static wagtailuserbar menu_tags %}
+{% get_menu "main" as navigation %}
+{% load wagtailmarkdown %}
+
+<script type="text/javascript">
+    index_json = {{ json_dict|safe }};
+</script>
+
+	<div class="left_content">
+	    <header>
+	        <div class="menu_section">
+	            <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)" class="with_about">
+	                <option disabled selected value></option>
+	                {% for item in navigation.menu_items.all %}
+	                <option value="{{ item.title }}">{{ item.title }}</option>
+	                {% endfor %}
+              </select>
+              <div id="green_box"></div>
+	        </div>
+	    </header>
+
+	    <div id="top_location"></div>
+     
+        <div id="about_pg_content" class="internal_pg_container about_pg">
+          
+        {{ page.body|markdown }}
+        
+        <div class="bottom-buttons">
+          <button class="back_to_top" onclick="back_to_top('top_location')">back to top</button>
+          <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
+          <button class="submit"><a href="submit">submit</a></button>
+        </div>
+			
+        </div>
+   
+
+
+</script>
+{% endblock %}

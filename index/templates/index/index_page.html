@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-indexpage{% endblock %}
+
+{% block content %}
+
+{% load static wagtailuserbar menu_tags %}
+{% get_menu "main" as navigation %}
+
+{% load wagtailcore_tags wagtailimages_tags cache %}
+{% load wagtailmarkdown %}
+
+<script type="text/javascript">
+    index_json = {{ json_dict|safe }};
+    index_img_json = {{ json_img_dict|safe }};
+    var rownum_str = "rownum";
+    var author_founder_str = "author_founder";
+    var title_str = "title"
+    var pub_date_str = "pub_date"
+</script>
+
+<div class="left_content" id="left_index">
+    <header>
+        <div class="menu_section">
+            <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)" class="nav">
+                <option disabled selected value></option>
+                {% for item in navigation.menu_items.all %}
+                <option value="{{ item.title }}">{{ item.title }}</option>
+                {% endfor %}
+            </select>
+            <div id="green_box"></div>
+            <div id="tag_btn"></div>
+        </div>
+    </header>
+
+
+    <div id="top_location"></div>
+
+    <div id="index_list" class="main_index_style">
+        <div class="index_entry arrows grid-container">
+            <div class="sm num">
+               
+            </div>
+            <div class="sm pub_date" onclick="sort_loading(pub_date_str)">
+                ↓
+            </div>
+            <div class="lg title" onclick="sort_loading(title_str)">
+                ↓
+            </div>
+            <div class="md author_founder" onclick="sort_loading(author_founder_str)">
+                ↓
+            </div>
+        </div>
+
+          {% cache 604800 preview_index index.id %}
+            {% for index in posts %}
+                <div class="index_entry" onclick="slideIndex_drawer(this, '{{index.slug}}'); add_to_trail('{{ index.slug }}')" id="{{index.slug}}">
+                  <div class="grid-container">
+                    <div class="sm num"><p class="cr">({{ index.rownum }})</p></div>
+                    <div class="sm">
+                        <p>
+                        {% if index.end_date == None and index.pub_date != None %}
+                            {{ index.pub_date }}
+                        {% endif %}
+                        {% if index.end_date != None %}
+                            {{ index.pub_date }}–<br>
+                            {{ index.end_date }}
+                        {% endif %}
+                        </p>
+                    </div>
+                    <div class="lg"><p>{{ index.title }}</p></div>
+                    <div class="md"><p>
+                        {% if index.author_founder != None %}
+                        {{ index.author_founder|markdown }}
+                        {% else %}
+                        {% endif %}
+                    </p></div>
+                  </div>
+                
+                </div>
+                <div class="index_drawer closed">
+                    <div class="drawer_content">
+                        <p class="about_text">{{ index.about|markdown }}</p>
+                        {% if index.contributed_by != None %}
+                        <p>{{ index.contributed_by }}</p>
+                        {% endif %}
+                        <p class="external_links">
+                            {% if index.external_link != None %}
+                            <a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
+                            {% endif %}
+                            {% if index.external_link_two != None %}
+                            <a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
+                            {% endif %}
+                        </p>
+                        {% if index.location != None %}
+                        <p>{{ index.location }}</p>
+                        {% endif %}
+                        <div class="img_section">
+                            {% for loop_cycle in index.images_list.all %}
+                                {% image loop_cycle.images height-220 as img %} 
+                                {% if loop_cycle.images is None %}
+                                {% else %}
+                                    <div class="img_container">
+                                        <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+                                        <p>{{ loop_cycle.caption|markdown }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% for cat in index.categories.all %}
+                            {% if cat.name != None %}
+                             <span>
+                                <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
+                            </span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+
+                    <!-- MOBILE -->
+                    <div class="drawer_content mobile">
+                        <p class="about_text">{{ index.about|markdown }}</p>
+                        {% if index.contributed_by != None %}
+                        <p>{{ index.contributed_by }}</p>
+                        {% endif %}
+                        <p class="external_links">
+                            {% if index.external_link != None %}
+                            <a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
+                            {% endif %}
+                            {% if index.external_link_two != None %}
+                            <a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
+                            {% endif %}
+                        </p>
+                        {% if index.location != None %}
+                        <p>{{ index.location }}</p>
+                        {% endif %}
+                        <div class="img_section">
+                            {% for loop_cycle in index.images_list.all %}
+                                {% image loop_cycle.images height-220 as img %} 
+                                {% if loop_cycle.images is None %}
+                                {% else %}
+                                    <div class="img_container">
+                                        <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+                                        <p class="caption">{{ loop_cycle.caption|markdown }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% for cat in index.categories.all %}
+                            {% if cat.name != None %}
+                             <span>
+                                <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
+                            </span>
+                            {% endif %}
+                        {% endfor %}
+                    {% for internal in index.internal_links.all %}
+                        <p>internal links:
+                            {{ internal.link_copy }} {{ internal.link_page }}
+                        </p>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endcache %} 
+        <div class="bottom-buttons">
+          <button class="back_to_top" onclick="back_to_top('top_location')">back to top</button>
+          <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
+          <button class="submit"><a href="submit">submit</a></button>
+        </div>
+       
+   
+    </div>
+    
+</div>
+
+
+
+<script>
+
+//scroll reader
+// function get() {
+// d = document.getElementById("left_index")
+// g = document.getElementById("green_box")
+//     d.addEventListener('scroll', function() {
+//       console.log('test');
+//        g.classList.remove("extend_green_two")
+//        g.classList.remove("extend_green_three")
+//     if (d.scrollTop >= 200 ) {
+//         g.classList.add("extend_green")
+//     } 
+//     if (d.scrollTop >= 700 ) {
+//         g.classList.remove("extend_green")
+//         g.classList.add("extend_green_two")
+//     }
+//     if (d.scrollTop >= 1200 ) {
+//         g.classList.remove("extend_green_two")
+//         g.classList.add("extend_green_three")
+//     }
+//     });
+// }
+// get()
+
+</script>
+
+
+
+{% endblock %}

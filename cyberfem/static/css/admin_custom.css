@@ -1,0 +1,38 @@
+.wagtail-logo-container__desktop, .wagtail-logo-container__mobile {
+	display: none;
+}
+#id_categories {
+	columns: 3;
+ 	-webkit-columns: 3;
+	-moz-columns: 3;
+}
+
+
+/*
+.tab-nav a {
+	border: 1px solid #000;
+}
+.tab-nav li.active a {
+	background: #fff;
+	color: #000;
+}
+.breadcrumb li a, .breadcrumb li span, .breadcrumb li a:after, .breadcrumb li span:after {
+	color: #fff;
+}
+.tab-nav a {
+	background-color: black;
+}
+.page-editor header, .nav-wrapper, .nav-wrapper .inner {
+	background-color: #171e23;
+}
+.tab-nav.merged, .breadcrumb, .page-editor header, #tab-content, .object.full .halloeditor, .object.full input, .object.full textarea {
+	background-color: #1b1b1b;
+}
+.object.full .halloeditor, .object.full input, .object.full textarea, .field-col.col6 label, .boolean_field .label, .boolean_field label, .image_field .label, .image_field label, .model_choice_field .label, .model_choice_field label, .model_multiple_choice_field .label, .model_multiple_choice_field label, .radio_select .label, .radio_select label {
+	color: #fff
+}
+button.button-small, input[type=button].button-small, input[type=reset].button-small, input[type=submit].button-small {
+    color: #fff;
+    border: 1px solid #fff;
+}*/
+

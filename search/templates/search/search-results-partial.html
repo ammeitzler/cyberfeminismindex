@@ -1,0 +1,85 @@
+{# search-results-partial.html #}
+{% load static wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags cache %}
+{% block content %}
+{% load wagtailmarkdown %}
+
+<script type="text/javascript">
+    index_json = {{ json_dict|safe }};
+    index_img_json = {{ json_img_dict|safe }};
+</script>
+
+{% if search_results == None %}
+
+	{% if search_results_ajax %}
+    {% for result in search_results_ajax %}
+    <div id="search_partial_list" class="main_index_style">
+            <div class="index_entry" onclick="slideIndex_drawer(this, '{{result.slug}}'); add_to_trail('{{ result.slug }}')" id="{{result.slug}}">
+                <div class="sm num"><p class="cr">({{ result.rownum }})</p></div>
+                <div class="sm"><p>
+                    {% if result.pub_date != None %}
+                        {{ result.pub_date }}
+                    {% endif %}
+                    {% if result.end_date != None %}
+                        –{{ result.end_date }}
+                    {% endif %}
+                </p></div>
+                <div class="lg"><p>{{ result.title }}</p></div>
+                <div class="md"><p>
+                    {% if result.author_founder != None %}
+                    {{ result.author_founder|markdown }}
+                    {% else %}
+                    {% endif %}
+                </p></div>
+            </div>
+            <div class="index_drawer closed">
+                <div class="drawer_content">
+                    <p class="about_text">{{ result.about|markdown }}</p>
+                    {% if result.contributed_by != None %}
+                    <p>{{ result.contributed_by }}</p>
+                    {% endif %}
+                    <p class="external_links">
+                        {% if result.external_link != None %}
+                        <a href="{{result.external_link}}" target="_blank">{{ result.external_link }}</a>
+                        {% endif %}
+                        {% if result.external_link_two != None %}
+                        <a href="{{result.external_link_two}}" target="_blank">{{ result.external_link_two }}</a>
+                        {% endif %}
+                    </p>
+                    {% if result.location != None %}
+                    <p>{{ result.location }}</p>
+                    {% endif %}
+                    <div class="img_section">
+                        {% for loop_cycle in result.images_list.all %}
+                            {% image loop_cycle.images height-220 as img %} 
+                            {% if loop_cycle.images is None %}
+                            {% else %}
+                                <div class="img_container">
+                                    <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+                                    <p class="caption">{{ loop_cycle.caption|markdown }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% for cat in result.categories.all %}
+                        {% if cat.name != None %}
+                         <span>
+                            <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
+                        </span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                </div>
+            </div>  
+            {% if result.search_description %}
+                {{ result.search_description }}
+            {% endif %}
+        {% endfor %}
+
+
+        {% elif search_query %}
+        <p class="no_results">No results found</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
