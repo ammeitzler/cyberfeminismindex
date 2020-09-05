@@ -1,0 +1,20 @@
+body,html {
+	margin: 0;
+  	/* font-size: 1.5vw; */
+  	font-family: Arial, sans-serif;
+  	color: red;
+}
+@font-face {
+      font-family: 'arial_lc_symbol_regularRg';
+      src: url('arial_lc_symbol_v17-webfont.woff2') format('woff2'),
+               url('Arial_LC_Symbol_v17.otf') format('otf');
+      font-weight: normal;
+      font-style: normal;
+}
+.cr { 
+    font-family: 'arial_lc_symbol_regularRg';
+    font-variant-ligatures: common-ligatures;
+    -moz-font-feature-settings: "liga", "clig";
+    -webkit-font-feature-settings: "liga", "clig";
+    font-feature-settings: "liga", "clig";
+}

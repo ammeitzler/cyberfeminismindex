@@ -3,8 +3,8 @@
 *.swp
 /venv/
 .venv/
-/static/
-# /media/
+# /static/
+/media/
 /cache/
 cache/
 # db.sqlite3
