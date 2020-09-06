@@ -584,10 +584,10 @@ td.cr {
   page-break-before: always;
   padding-top: 0.25in;
 }
-/*#pdf_page @page { 
-  size: 8.5in 11in;
-  margin: 0in; /* this removes default header/footer */
-}*/
+#pdf_page @page { 
+/*  size: 8.5in 11in;
+  margin: 0in;  this removes default header/footer */
+}
 
  
 #green_box {
