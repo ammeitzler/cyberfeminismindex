@@ -30,7 +30,6 @@
 	    <div id="top_location"></div>
 	    
 	    <div class="collections_pg">
-	    	{% cache 604800 preview_index_collection index_collection.id %}
 		    	<div id="curator_list">
 		    		{% for index_col in index_collections %}
 			       	<input type="radio" name="collection" value="{{ index_col.slug }}" onclick="collection_url('{{index_col.slug}}')">
@@ -103,7 +102,6 @@
 		                    </div>
 	                	</div>
 			    	{% endfor %}
-			    {% endcache %}
 	    	</div>
         <div class="bottom-buttons">
           <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
