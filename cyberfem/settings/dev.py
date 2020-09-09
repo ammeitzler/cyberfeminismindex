@@ -1,7 +1,7 @@
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
