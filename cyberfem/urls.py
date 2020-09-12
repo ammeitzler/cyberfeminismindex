@@ -10,6 +10,9 @@ from search import views as search_views
 from django.views.generic import TemplateView
 
 from django.urls import path
+from django.views.decorators.cache import never_cache
+from wagtail.images.views.serve import ServeView
+
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -19,7 +22,12 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
     url(r'^ajax/search/$', search_views.autocomplete_search, name='search_ajax'),
+    
+    url(r'^orderby/$', never_cache(ServeView.as_view()), name='index'),
+
+
 ]
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static

@@ -28,7 +28,7 @@ from django.http import HttpResponse
 from django.dispatch import receiver
 from wagtail.core.signals import page_published, page_unpublished
 from wagtail.search import index
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 
@@ -147,10 +147,13 @@ class IndexPage(RoutablePageMixin, Page):
           context["image_entries"].append({"slug":index.slug, "img_name":str(c)})
 
     context['json_img_dict'] = json.dumps(list(context["image_entries"]))
+
     return context
 
+  @never_cache
   @route(r"^orderby/(?P<order>[-\w]+)/$", name="orderby_view")
   def orderby_view(self,request,order):
+    print("orderby view")
     context = self.get_context(request)
     try:
       orderby = context["posts"].order_by(Lower(order))
@@ -158,7 +161,6 @@ class IndexPage(RoutablePageMixin, Page):
       orderby = None
     if orderby is None:
       pass
-
     context["posts"] = orderby
     # clear index page only
     key = make_template_fragment_key(
@@ -166,6 +168,7 @@ class IndexPage(RoutablePageMixin, Page):
             [self.id]
         )
     cache.delete(key)
+    print(orderby)
     # cache.clear()
     return render(request, "index/index_page.html", context)
 

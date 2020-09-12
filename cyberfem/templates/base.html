@@ -67,14 +67,14 @@
             <div id="viewdownloads_list" class="hide">
                 {% for download in index_viewdownloads %}
                 <div id="base_indexdownloads_table">
-                    <p>{{ download.quantity }} entries
-                    {{ download.quantity }}
-                    {% if download.quantity > 1 %}
-                        entries
-                    {% else %}
-                        entry
-                    {% endif %}
-                    downloaded on {{ download.created_at }}
+                    <p>
+                        {{ download.quantity }}
+                        {% if download.quantity > 1 %}
+                            entries
+                        {% else %}
+                            entry
+                        {% endif %}
+                        downloaded on {{ download.created_at }}
                     <p>
                 </div>
                 {% endfor %}
