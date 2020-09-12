@@ -21,6 +21,11 @@ ALLOWED_HOSTS = ['*']
 
 # INTERNAL_IPS = ("127.0.0.1", "172.17.0.1")
 
+#for digital ocean
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+# MEDIA_URL = 'media'
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 COMPRESS_OFFLINE = True

@@ -26,11 +26,27 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+# CACHES = {
+# 	"default": {
+# 		"BACKEND":"django.core.cache.backends.filebased.FileBasedCache",
+# 		"LOCATION": os.path.join(BASE_DIR, 'cache'),
+# 	}
+# }
+
+#for digital ocean
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media'
+
+#for digitalocean 
 CACHES = {
-	"default": {
-		"BACKEND":"django.core.cache.backends.filebased.FileBasedCache",
-		"LOCATION": os.path.join(BASE_DIR, 'cache'),
-	}
+    'default':{
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'KEY_PREFIX': 'example'
+    }
 }
 
 

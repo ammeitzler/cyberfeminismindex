@@ -31,7 +31,6 @@ class PdfPage(RoutablePageMixin, Page):
 		titles_array = []
 		context["download_entries"] = []
 		page_ptr_id_str = request.GET.get('page_ptr_id')
-		print(page_ptr_id_str)
 		if page_ptr_id_str:
 			page_ptr_id_array = page_ptr_id_str.split(",")
 			for p in page_ptr_id_array:
