@@ -501,9 +501,7 @@ td.cr {
 }
 
 .go {
-  position: fixed;
-  left: 18px;
-  top: 150px;
+  margin-top:30px;
 }
 
 .bottom-buttons button a {

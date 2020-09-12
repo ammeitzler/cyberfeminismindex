@@ -29,6 +29,7 @@
             <form action="{% url 'search' %}" method="get">
                 <input id="user-input" type="text" placeholder="enter search term" action=”{{ search_query }}” name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
                 <input type="submit" style="display: none" />
+                <button class="go" onclick="back_to_top('top_location')">go</button>
             </form> 
 
             <div id="categories_list">
@@ -113,7 +114,7 @@
                 <p class="no_results">No results found</p>
             {% endif %}
             </div>
-            <button class="go" onclick="back_to_top('top_location')">go</button>
+            
             <div class="bottom-buttons">
               <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
               <button class="submit"><a href="submit">submit</a></button>
