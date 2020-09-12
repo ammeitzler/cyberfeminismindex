@@ -133,92 +133,6 @@ function create_pdf() {
     window.open(str, '_blank');
 }
 
-// function create_pdf() {
-//     var dt = new Date().toLocaleString();
-//     table = document.createElement('table');
-//     var printWindow = window.open('', '', 'height=700,width=950');
-//     printWindow.document.write("<html><head><title>Cyberfeminism Index</title>")
-//     printWindow.document.write('<style>html,body {height: 100vh;padding: 0;margin: 0.5em;font-size: 2.25vw;font-family: Arial, sans-serif;color: black;}@font-face {font-family: "arial_lc_symbol_regularRg";src: url("/static/css/arial_lc_symbol_v17-webfont.woff2") format("woff2"),url("/static/css/Arial_LC_Symbol_v17.otf") format("otf");font-weight: normal;font-style: normal;}.cr {padding-top: 5px;font-family: "arial_lc_symbol_regularRg";font-variant-ligatures: common-ligatures;-moz-font-feature-settings: "liga", "clig";-webkit-font-feature-settings: "liga", "clig";font-feature-settings: "liga", "clig";}td {padding-right: 1em;vertical-align: top;}tr {display: table-row;vertical-align: inherit;border-color: inherit;}table {font-size:2.25vw;padding-bottom: 15px;width: 100%;float: left;}.sm {width:7%;} .lg{width:60%;}img{max-height:90px;margin-right:5px;}@page{size: 8.5in 11in;margin: 0;}</style>')
-//     printWindow.document.write("</head>");
-
-//     //first page
-//     temp_top_array = ["<div id='pdf_list' class='main_index_style' style='position:relative; display: inline-block;'><table><tbody>"]
-//     for (i = 0; i < trail_array.length; i++) {
-//         console.log(trail_array[i])  
-//         let obj = index_json.find(o => o.slug === trail_array[i])
-//         var temp_top = `<tr>
-//                             <td class="cr sm">`+obj.rownum+`</td>
-//                             ${(obj.pub_date == null) ? '<td></td>' : '<td class="date sm">'+obj.pub_date+'</td>'} 
-//                             ${(obj.title == null) ? '<td></td>' : '<td class="lg">'+obj.title+'</td>'} 
-//                             ${(obj.author_founder == null) ? '<td></td>' : '<td class="author">'+obj.author_founder+'</td>'} 
-//                         </tr>`;
-//         temp_top_array.push(temp_top)
-//         trail_array_ids.push(obj.page_ptr_id)
-//     }
-//     temp_top_array.push("</tbody></table></div>")
-//     temp_top_joined = temp_top_array.join('');
-//     printWindow.document.write(temp_top_joined);
-
-//     window.location = '?downloadpdf='+ trail_array_ids;
-
-//     //second page
-//     temp_bottom_array = ["<div style='position:relative; display: inline-block; page-break-before: always;'"];
-//     for (i = 0; i < trail_array.length; i++) { 
-//         let obj = index_json.find(o => o.slug === trail_array[i])
-//         let img_titles = index_img_json.filter(x => x["slug"].includes(trail_array[i]))
-//         temp_bottom_array.push("<div class='main_index_style'><table><tbody>")
-//         var temp_bottom = `<tr>
-//                             <td class="cr sm">`+obj.rownum+`</td>
-//                             ${(obj.pub_date == null) ? '<td></td>' : '<td class="date sm">'+obj.pub_date+'</td>'} 
-//                             ${(obj.title == null) ? '<td></td>' : '<td class="lg">'+obj.title+'</td>'} 
-//                             ${(obj.author_founder == null) ? '<td></td>' : '<td class="author">'+obj.author_founder+'</td>'} 
-//                         </tr>`;
-//         temp_bottom_array.push(temp_bottom)
-//         temp_bottom_array.push("</tbody></table></div>");
-//         //get images file path and extension
-//         function get_images() {
-//             img_elm_list = []
-//             function fileNameAndExt(str){
-//               var file = str.split('/').pop();
-//               return [file.substr(0,file.lastIndexOf('.')),file.substr(file.lastIndexOf('.')+1,file.length)]
-//             }
-//             for (i = 0; i < img_titles.length; i++) {  
-//                 img_path = fileNameAndExt(img_titles[i].img_name)
-//                 img_elm = '<img height="220" src="/media/images/' + img_path[0] + '.height-220.' + img_path[1] +'">';
-//                 img_elm_list.push(img_elm)
-//             }
-//             return img_elm_list
-//         }
-//         var temp_content = `<p>
-//                             ${(obj.about == null) ? '' : ''+obj.about+''} 
-//                             ${(obj.location == null) ? '' : ''+obj.location+''} 
-//                             ${(obj.external_link == null) ? '' : ''+obj.external_link+''} 
-//                             ${(obj.external_link_two == null) ? '' : ''+obj.external_link_two+''} 
-//                         </p>`;
-//         temp_bottom_array.push(temp_content)
-//         if (obj.images_list !== null) {
-//             img_elm_list = get_images()
-//             img_elm_joined = img_elm_list.join('');
-//             var img_content = '<p>'+img_elm_joined+'</p>'
-//             temp_bottom_array.push(img_content);
-//         }
-//     }
-//     temp_bottom_array.push("</div>");
-//     temp_bottom_joined = temp_bottom_array.join('');
-//     printWindow.document.write(temp_bottom_joined);
-    
-//     //last page
-//     var info_content = `<div style="position:relative; display: inline-block; page-break-before: always;"
-//                             <p>This PDF contains selections from Cyberfeminism Index (https://cyberfeminismindex.com). It was downloaded on` + dt + `. The website and its contents may have changed since then.</p>
-//                             <p>Cyberfeminism Index is facilitated by Mindy Seu (https://mindyseu.com/) The website was developed by Angeline Meitzler (https://angeline-meitzler.com/) This font is Arial by Robin Nicholas and Patricia Saunders. The encircled cross-reference numbers are an adaptation of this font called Arial Symbol by Laura Coombs (http://lauracoombs.com). All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
-//                         </div>`;
-//     printWindow.document.write(info_content);
-
-//     printWindow.document.write('</body></html>');
-//     printWindow.document.close();
-//     printWindow.print();
-// }
-
 function view_downloads() {
     var viewdownloads_list = document.getElementById("viewdownloads_list");
     var base_index_list = document.getElementById("base_index_list");
@@ -264,7 +178,7 @@ function add_to_trail(slug) {
             cell3.innerHTML = obj.author_founder;
         }
         row.classList.add("base_tr")
-        row.setAttribute("id", obj.slug);
+        row.setAttribute("id", obj.slug + "_base");
         row.setAttribute("title", obj.title);
         row.addEventListener("click",  function(){ remove_trail_entry(this, slug); });
         table.appendChild(row);  
@@ -309,8 +223,9 @@ function internal_ligatures(selected_drawer) {
     // internal links
     if(menu.value == "cyberfeminism index" || menu.value == "search" || menu.value == "collections") {
         var node = selected_drawer.children[0].children[1];
+        console.log(node)
         var n = node.children
-        // console.log(n)
+        console.log(n)
     } 
     if(menu.value == "images") {
         var node = selected_drawer.children[0].children[4];
@@ -370,6 +285,9 @@ function internal_ligatures(selected_drawer) {
 }
 
 function slideIndex_drawer(elm, url) {
+    console.log(elm)
+    console.log(elm.nextSibling)
+    console.log(elm.nextSibling.nextSibling)
     var selected_drawer = elm.nextSibling.nextSibling;
 
     if (elm.classList.contains("green_text")) {

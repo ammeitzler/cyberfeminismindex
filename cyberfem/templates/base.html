@@ -66,13 +66,17 @@
             </div>
             <div id="viewdownloads_list" class="hide">
                 {% for download in index_viewdownloads %}
-                <table id="base_indexdownloads_table">
-                    <tr>
-                        <td>{{ download.quantity }}</td>
-                        <td>{{ download.entries }}</td>
-                        <td>{{ download.created_at }}</td>
-                    </tr>
-                </table>
+                <div id="base_indexdownloads_table">
+                    <p>{{ download.quantity }} entries
+                    {{ download.quantity }}
+                    {% if download.quantity > 1 %}
+                        entries
+                    {% else %}
+                        entry
+                    {% endif %}
+                    downloaded on {{ download.created_at }}
+                    <p>
+                </div>
                 {% endfor %}
             </div>
             <div id="trail_container">
