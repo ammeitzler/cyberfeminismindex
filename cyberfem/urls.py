@@ -23,9 +23,6 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
     url(r'^ajax/search/$', search_views.autocomplete_search, name='search_ajax'),
     
-    url(r'^orderby/$', never_cache(ServeView.as_view()), name='index'),
-
-
 ]
 
 

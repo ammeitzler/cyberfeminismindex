@@ -43,7 +43,7 @@
 
 	            		<div class="grid-container" onclick="slideIndex_drawer(this, '{{index.slug}}'); add_to_trail('{{ index.slug }}')" id="{{index.slug}}">
 
-		                    <div class="sm num"><p class="cr">{{ index.rownum }}</p></div>
+		                    <div class="sm num"><p class="cr">({{ index.rownum }})</p></div>
 		                    <div class="sm">
 		                    	<p>
 	                          {% if index.end_date == None and index.pub_date != None %}

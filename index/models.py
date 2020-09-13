@@ -103,8 +103,6 @@ class IndexDownloads(models.Model):
 
 register_snippet(IndexDownloads)
 
-
-
 class IndexInternalLinks(models.Model):
     page = ParentalKey('index.IndexDetailPage', on_delete=models.CASCADE, related_name='internal_links')
     link_copy = models.TextField(blank=True, null=True)
@@ -150,10 +148,9 @@ class IndexPage(RoutablePageMixin, Page):
 
     return context
 
-  @never_cache
   @route(r"^orderby/(?P<order>[-\w]+)/$", name="orderby_view")
+  @never_cache
   def orderby_view(self,request,order):
-    print("orderby view")
     context = self.get_context(request)
     try:
       orderby = context["posts"].order_by(Lower(order))
@@ -164,9 +161,9 @@ class IndexPage(RoutablePageMixin, Page):
     context["posts"] = orderby
     # clear index page only
     key = make_template_fragment_key(
-            "preview_index",
-            [self.id]
+            "preview_index"
         )
+    print(key)
     cache.delete(key)
     print(orderby)
     # cache.clear()
