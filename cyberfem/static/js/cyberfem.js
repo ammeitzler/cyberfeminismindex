@@ -85,6 +85,7 @@ function getUrl() {
 
 
 function sort_loading(order) {
+    console.log("loading")
     $("#index_list").addClass("loading");
     $(".arrows").addClass("loading");
     $(".index_content").addClass("transparent");
@@ -125,7 +126,6 @@ var trail_array_ids = []
 
 function create_pdf() {
     for (i = 0; i < trail_array.length; i++) {
-        console.log(trail_array[i]);  
         let obj = index_json.find(o => o.slug === trail_array[i]);
         trail_array_ids.push(obj.page_ptr_id);
     }
@@ -223,9 +223,9 @@ function internal_ligatures(selected_drawer) {
     // internal links
     if(menu.value == "cyberfeminism index" || menu.value == "search" || menu.value == "collections") {
         var node = selected_drawer.children[0].children[1];
-        console.log(node)
+        // console.log(node)
         var n = node.children
-        console.log(n)
+        // console.log(n)
     } 
     if(menu.value == "images") {
         var node = selected_drawer.children[0].children[4];
@@ -285,9 +285,6 @@ function internal_ligatures(selected_drawer) {
 }
 
 function slideIndex_drawer(elm, url) {
-    console.log(elm)
-    console.log(elm.nextSibling)
-    console.log(elm.nextSibling.nextSibling)
     var selected_drawer = elm.nextSibling.nextSibling;
 
     if (elm.classList.contains("green_text")) {
@@ -435,50 +432,6 @@ function scroll_green() {
 }
 
 
-
-
-
-// d = document.getElementById("left_index")
-
-// $(d).on('mousewheel', function(event) {
-//     console.log(event.deltaX, event.deltaY, event.deltaFactor);
-// });
-
-// const checkScrollSpeed = (function(settings) {
-//   settings = settings || {};
-
-//   let lastPos, newPos, timer, delta,
-//       delay = settings.delay || 50;
-
-//   function clear() {
-//     lastPos = null;
-//     delta = 0;
-//   }
-
-//   clear();
-
-//   return function() {
-//     newPos = d.scrollY;
-//     if (lastPos != null) { // && newPos < maxScroll
-//       delta = newPos - lastPos;
-//     }
-//     lastPos = newPos;
-//     clearTimeout(timer);
-//     timer = setTimeout(clear, delay);
-//     return delta;
-//   };
-// })();
-
-// const container = document.querySelector('#menu');
-
-// d.addEventListener('scroll', function() {
-//   var speed = checkScrollSpeed();
-//   console.log(speed);
-//   if (speed > 150) {
-//     console.log('150+');
-//     container.classList.add('red');
-//   }
-// });
 
 
 
