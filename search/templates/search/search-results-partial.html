@@ -17,11 +17,12 @@
             <div class="index_entry" onclick="slideIndex_drawer(this, '{{result.slug}}'); add_to_trail('{{ result.slug }}')" id="{{result.slug}}">
                 <div class="sm num"><p class="cr">({{ result.rownum }})</p></div>
                 <div class="sm"><p>
-                    {% if result.pub_date != None %}
+                    {% if result.end_date == None and result.pub_date != None %}
                         {{ result.pub_date }}
                     {% endif %}
                     {% if result.end_date != None %}
-                        –{{ result.end_date }}
+                        {{ result.pub_date }}–<br>
+                        {{ result.end_date }}
                     {% endif %}
                 </p></div>
                 <div class="lg"><p>{{ result.title }}</p></div>
