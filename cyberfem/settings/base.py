@@ -86,7 +86,7 @@ ROOT_URLCONF = 'cyberfem.urls'
 
 #GOOGLE ANALYTICS
 GA_KEY_FILEPATH = os.path.join(BASE_DIR, 'cyberfeminismindex-e2effa4f82f6.json')
-GA_VIEW_ID = 'ga:177281044'
+GA_VIEW_ID = 'ga:228211171'
 
 TEMPLATES = [
     {
