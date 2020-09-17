@@ -85,7 +85,6 @@ function getUrl() {
 
 
 function sort_loading(order) {
-    console.log("loading")
     $("#index_list").addClass("loading");
     $(".arrows").addClass("loading");
     $(".index_content").addClass("transparent");

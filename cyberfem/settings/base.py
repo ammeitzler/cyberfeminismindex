@@ -85,7 +85,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'cyberfem.urls'
 
 #GOOGLE ANALYTICS
-GA_KEY_FILEPATH = os.path.join(BASE_DIR, 'cyberfeminismindex-1ee8b0b7c5b2.json')
+GA_KEY_FILEPATH = os.path.join(BASE_DIR, 'cyberfeminismindex-e2effa4f82f6.json')
 GA_VIEW_ID = 'ga:177281044'
 
 TEMPLATES = [
