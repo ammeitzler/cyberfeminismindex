@@ -1,7 +1,7 @@
 @font-face {
       font-family: 'arial_lc_symbol_regularRg';
-      src: url('arial_lc_symbol_v17-webfont.woff2') format('woff2'),
-               url('Arial_LC_Symbol_v17.otf') format('otf');
+      src: url('arial_symbol_2020_0817-webfont.woff2') format('woff2'),
+               url('Arial_Symbol_2020_0817.otf') format('otf');
       font-weight: normal;
       font-style: normal;
 }
