@@ -36,7 +36,6 @@ function getUrl() {
     switch(secondLevelLocation) {
       case "":
         menu.value = "cyberfeminism index";
-        console.log(1)
         var pathHash_array = window.location.hash.split('/');
         var pathHash = pathHash_array[1];
         internal_reference(pathHash)
@@ -44,12 +43,10 @@ function getUrl() {
         break;
       case "orderby":
         menu.value = "cyberfeminism index";
-        console.log(2)
         break;
       case "tag":
         menu.value = "cyberfeminism index";
         add_tag_button(selected_tag)
-        console.log(3)
         break;
       case "about":
         menu.value = str;
@@ -57,7 +54,6 @@ function getUrl() {
         internal_ligatures(selected_drawer)
         break;
       case "collections":
-        console.log(4);
         menu.value = str;
         let curator_list = document.getElementsByName('collection');
         if (selected_tag) {
@@ -71,7 +67,6 @@ function getUrl() {
         right_content.classList.add("unopened");
         break;
       default:
-        console.log(5)
         menu.value = str;
     }
 
@@ -194,12 +189,11 @@ function add_to_trail(slug) {
     }
 
     download_btn.innerHTML = "download ("+ trail_array.length + ")";
-    console.log("added to trail")
+    // console.log("added to trail")
     sessionStorage.setItem('trail', JSON.stringify(trail_array));
 }
 
 function session_trail(){
-    console.log(session_trail_array)
     if (session_trail_array) {
         for (i = 0; i < session_trail_array.length; i++) {
             let obj = index_json.find(o => o.slug === session_trail_array[i]);
@@ -420,20 +414,13 @@ function scroll_green() {
 
     // Setup isScrolling variable
     var isScrolling;
-
     index_list.addEventListener('scroll', function ( event ) {
         window.clearTimeout( isScrolling );
         isScrolling = setTimeout(function() {
-        // console.log( 'Scrolling has stopped.' );
         green_box.classList.remove("extend_green", "extend_green_two", "extend_green_three");
         }, 1000);
     }, false);
 }
-
-
-
-
-
 
 function search_url(cat_name) {
     window.location = base_url+"/tag/"+ cat_name;
@@ -443,6 +430,6 @@ function collection_url(col_name) {
     window.location = base_url+"/collections/"+ col_name;
 }
 
-
+// on start calls
 getUrl()
 session_trail()
