@@ -587,11 +587,7 @@ td.cr {
 @media print {
   #pdf_page .break {page-break-before: always;}
 }
-/*
-#pdf_page @page { 
-  size: 8.5in 11in;
-  margin: 0in; /* this removes default header/footer */
-}*/
+
 
 
  
