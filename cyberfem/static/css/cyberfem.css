@@ -562,9 +562,9 @@ td.cr {
 }
 
 
-/*#pdf_list .index_drawer .drawer_content {
+#pdf_list .index_drawer .drawer_content {
   margin: 0;
-}*/
+}
 #pdf_page .cover {
   font-size: 105px;
   text-shadow: 0 0 17px #00ff00;
