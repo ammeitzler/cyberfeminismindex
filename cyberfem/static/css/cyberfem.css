@@ -564,6 +564,10 @@ td.cr {
 
 #pdf_list .index_drawer .drawer_content {
   margin: 0;
+  padding: 0;
+}
+#pdf_list .sm.num {
+  margin: 0;
 }
 #pdf_page .cover {
   font-size: 105px;
@@ -572,11 +576,12 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  padding: 40px;
+  padding: 40px !important;
 }
 #pdf_page .print-description {
   margin-top: 120px;
 }
+
 /*#pdf_page .break {
   page-break-before: always;
   padding-top: 0.25in;
