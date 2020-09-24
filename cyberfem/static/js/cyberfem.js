@@ -215,10 +215,26 @@ function internal_reference(id) {
 function internal_ligatures(selected_drawer) {
     // internal links
     if(menu.value == "cyberfeminism index" || menu.value == "search" || menu.value == "collections") {
-        var node = selected_drawer.children[0].children[1];
+        var n = []
+        var node = selected_drawer.children[0].children
         // console.log(node)
-        var n = node.children
-        // console.log(n)
+        for (i = 0; i < node.length; i++) { 
+            for (j = 0; j < node[i].children.length; j++) {
+                if (node[i].children[j].nodeName == "EM") {
+                    for (k = 0; k < node[i].children[j].childNodes.length; k++) {
+                        if (node[i].children[j].childNodes[k].nodeName == "A" && node[i].children[j].childNodes[k].innerHTML == "(x)") {
+                            n.push(node[i].children[j].childNodes[k])
+                        }
+                    } 
+                }
+                if (node[i].children[j].nodeName == "A" && node[i].children[j].innerHTML == "(x)") {
+                    n.push(node[i].children[j])
+                } 
+                if (node[i].children[j].nodeName == "A" && node[i].children[j].innerHTML != "(x)") {
+                    node[i].children[j].target = '_blank';
+                }
+            }
+        }
     } 
     if(menu.value == "images") {
         var node = selected_drawer.children[0].children[4];
@@ -250,6 +266,8 @@ function internal_ligatures(selected_drawer) {
 
     if (node.classList != "external_links") {
         for (i = 0; i < n.length; i++) { 
+            console.log("here")
+            console.log(n)
             if(n[i] && n[i].nodeName == "A" && n[i].text == "(x)") {
                 var inline_link = n[i].href
                 var parts = inline_link.split('/');
