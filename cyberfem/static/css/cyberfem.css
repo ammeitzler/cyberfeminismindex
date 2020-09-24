@@ -582,7 +582,7 @@ td.cr {
   padding-top: 0.25in;
 }
 @media print {
-  #pdf_page .break {page-break-before: always;}
+  #pdf_page .break {page-break-before: always; padding-top: 0.25in;}
   @page { margin: 0; }
   body { margin: 1.6cm; }
 }

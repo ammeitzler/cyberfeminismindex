@@ -46,13 +46,6 @@ CACHES = {
     }
 }
 
-# CACHES = {
-# 	"default": {
-# 		"BACKEND":"django.core.cache.backends.filebased.FileBasedCache",
-# 		"LOCATION": os.path.join(BASE_DIR, 'cache'),
-# 	}
-# }
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 try:
