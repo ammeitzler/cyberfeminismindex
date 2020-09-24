@@ -570,13 +570,15 @@ td.cr {
   text-shadow: 0 0 17px #00ff00;
   line-height: 1.1;
   color: transparent;
+  /*padding: 40px;*/
+}
+#pdf_page .left_content {
+  padding: 40px;
 }
 #pdf_page .print-description {
   margin-top: 120px;
   font-size: 16px;
-}
-#pdf_page body {
-  margin: 40px;
+  padding: 0 20px;
 }
 #pdf_page .break {
   page-break-before: always;
