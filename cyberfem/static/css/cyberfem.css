@@ -585,10 +585,10 @@ td.cr {
 /*#pdf_page .break {
   page-break-before: always;
   padding-top: 0.25in;
-}
-@media print {
-  #pdf_page .break {page-break-before: always; padding-top: 0.25in;}
 }*/
+@media print {
+  #pdf_page .break {page-break-after: always; clear: both; padding-top: 0.25in;}
+}
 
  
 #green_box {
