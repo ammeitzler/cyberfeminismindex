@@ -586,8 +586,11 @@ td.cr {
   page-break-before: always;
   padding-top: 0.25in;
 }*/
+@media all {
+  #pdf_page .break { display: none; }
+}
 @media print {
-  #pdf_page .break {page-break-after: always; clear: both; padding-top: 0.25in;}
+  #pdf_page .break { display: block; page-break-before: always; }
 }
 
  
