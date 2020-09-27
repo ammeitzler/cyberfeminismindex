@@ -601,7 +601,7 @@ td.cr {
 @media print {
   #pdf_page .break { display: block; page-break-before: always; }
   #pdf_page div { display:inline; }
-  @page { margin:40px; }
+  @page { margin:0.5in; }
 }
 
  
