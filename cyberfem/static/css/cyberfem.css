@@ -576,7 +576,9 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  padding: 40px !important;
+  margin: 40px !important;
+  overflow: visible;
+  height: auto;
 }
 #pdf_page .print-description {
   margin-top: 120px;
@@ -587,11 +589,7 @@ td.cr {
 #pdf_page .index_drawer {
   overflow-y: visible;
 }
-#pdf_page .left_content {
-  overflow: visible;
-  height: auto;
-  display: inline;
-}
+
 
 /*#pdf_page .break {
   page-break-before: always;
