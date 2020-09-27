@@ -587,6 +587,11 @@ td.cr {
 #pdf_page .index_drawer {
   overflow-y: visible;
 }
+#pdf_page .left_content {
+  overflow: visible;
+  height: auto;
+  display: inline;
+}
 
 /*#pdf_page .break {
   page-break-before: always;
