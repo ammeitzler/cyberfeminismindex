@@ -581,6 +581,12 @@ td.cr {
 #pdf_page .print-description {
   margin-top: 120px;
 }
+#pdf_page .grid-container {
+  display: block;
+}
+#pdf_page .index_drawer {
+  overflow-y: visible;
+}
 
 /*#pdf_page .break {
   page-break-before: always;
