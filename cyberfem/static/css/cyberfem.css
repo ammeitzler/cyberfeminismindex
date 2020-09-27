@@ -576,7 +576,6 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  margin: 40px !important;
   overflow: visible;
   height: auto;
 }
@@ -591,6 +590,7 @@ td.cr {
 }
 
 
+
 /*#pdf_page .break {
   page-break-before: always;
   padding-top: 0.25in;
@@ -601,6 +601,7 @@ td.cr {
 @media print {
   #pdf_page .break { display: block; page-break-before: always; }
   #pdf_page div { display:inline; }
+  @page { margin:40px; }
 }
 
  
