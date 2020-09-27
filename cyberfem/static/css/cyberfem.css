@@ -588,9 +588,6 @@ td.cr {
 #pdf_page .index_drawer {
   overflow-y: visible;
 }
-
-
-
 /*#pdf_page .break {
   page-break-before: always;
   padding-top: 0.25in;
