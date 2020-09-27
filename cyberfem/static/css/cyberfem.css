@@ -576,18 +576,15 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  overflow: visible;
+  /*overflow: visible;*/
   height: auto;
 }
 #pdf_page .print-description {
   margin-top: 120px;
 }
-#pdf_page .grid-container {
-  display: block;
-}
-#pdf_page .index_drawer {
+/*#pdf_page .index_drawer {
   overflow-y: visible;
-}
+}*/
 /*#pdf_page .break {
   page-break-before: always;
   padding-top: 0.25in;

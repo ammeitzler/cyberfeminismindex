@@ -11,7 +11,7 @@ var download_btn = document.getElementById('download_btn');
 var index_json;
 var index_img_json;
 let session_trail_array = JSON.parse(sessionStorage.getItem("trail"));
-var pdf_link = "https://cyberfem-pdf-renderer.herokuapp.com/api/render?url="
+var pdf_link = "https://cyberfem-pdf-renderer.herokuapp.com/api/render?emulateScreenMedia=false&url="
 
 window.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById("main_content").classList.remove("green-blur");
