@@ -597,6 +597,7 @@ td.cr {
 }
 @media print {
   #pdf_page .break { display: block; page-break-before: always; }
+  #pdf_page div { display:inline; }
 }
 
  
