@@ -24,16 +24,12 @@
 				<br><span id="pdf_date"></span>
 				<br><span id="pdf_time"></span>
 			</div>
-			<div class="print-description">
-				<p>Cyberfeminism Index is facilitated by Mindy Seu. The website was developed by Angeline Meitzler with frontend support from Janine Rosen and a little script made by Cab Broskoski. This font is Arial by Robin Nicholas and Patricia Saunders. The encircled cross-reference numbers are an adaptation of this font called Arial Symbol by Laura Coombs. All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
-			</div>
 
 			<div class="break"> </div>
 
 			{% if download_entries %}
-				<div id="pdf_list" class="main_index_style">
-	       			{% endif %}
-					{% for index in download_entries %}
+				{% for index in download_entries %}
+					<div id="pdf_list" class="main_index_style">
 	            		<div class="grid-container">
 		                    <div class="sm num"><p class="cr">({{ index.rownum }})</p></div>
 		                    <div class="sm">
@@ -92,9 +88,16 @@
 		                            {% endif %}
 		                        {% endfor %}
 		                    </div>
-	                	</div>
-					{% endfor %}
-		   	</div>
+                	</div>
+				{% endfor %}
+			{% endif %}
+
+			<div class="break"> </div>
+			<div class="print-description">
+				<p>Cyberfeminism Index is facilitated by Mindy Seu. The website was developed by Angeline Meitzler with frontend support from Janine Rosen and a little script made by Cab Broskoski. This font is Arial by Robin Nicholas and Patricia Saunders. The encircled cross-reference numbers are an adaptation of this font called Arial Symbol by Laura Coombs. All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
+			</div>
+
+		</div>
     </div>
    
 
