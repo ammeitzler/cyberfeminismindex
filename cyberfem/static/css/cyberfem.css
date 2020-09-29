@@ -566,8 +566,9 @@ td.cr {
   margin: 0;
   padding: 0;
 }
-#pdf_list .sm.num {
+#pdf_list .grid-container div.sm.num {
   margin: 0;
+  text-align: left;
 }
 #pdf_page .cover {
   font-size: 105px;
