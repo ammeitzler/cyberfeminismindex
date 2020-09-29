@@ -576,19 +576,31 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  /*overflow: visible;*/
   height: auto;
 }
 #pdf_page .print-description {
   margin-top: 120px;
 }
-/*#pdf_page .index_drawer {
-  overflow-y: visible;
-}*/
-/*#pdf_page .break {
-  page-break-before: always;
-  padding-top: 0.25in;
-}*/
+#pdf_page .grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0;
+  width: 100%;
+}
+#pdf_page .grid-container div {
+  text-align: left;
+  width: 5%;
+}
+#pdf_page .grid-container div.lg {
+  width: 50%;
+  text-indent: 20px;
+}
+#pdf_page .grid-container div.md {
+    width: 38%;
+    text-align: right;
+    float: right;
+}
 @media all {
   #pdf_page .break { display: none; }
 }
