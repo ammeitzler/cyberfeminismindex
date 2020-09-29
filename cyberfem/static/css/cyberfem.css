@@ -590,15 +590,14 @@ td.cr {
 }
 #pdf_page .grid-container div {
   text-align: left;
-  width: 5%;
+  width: 6%;
 }
 #pdf_page .grid-container div.lg {
   width: 50%;
   text-indent: 20px;
 }
 #pdf_page .grid-container div.md {
-    width: 38%;
-    text-align: right;
+    width: 30%;
     float: right;
 }
 @media all {
