@@ -28,7 +28,7 @@ def get_json(x):
 
     json_img_dict = json.dumps(list(context["image_entries"]))
     
-    if x is 1:
+    if x == 1:
         return json_dict
     else:
         return json_img_dict
