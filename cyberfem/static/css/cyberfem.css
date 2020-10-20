@@ -584,6 +584,9 @@ td.cr {
 #pdf_page .print-description {
   margin-top: 120px;
 }
+#pdf_list .index_drawer {
+  margin-bottom: 50px;
+}
 #pdf_page .grid-container {
   display: flex;
   flex-wrap: wrap;
