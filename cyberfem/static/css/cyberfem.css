@@ -563,8 +563,8 @@ td.cr {
 
 
 #pdf_list .index_drawer .drawer_content {
-  margin: 0;
   padding: 0;
+  margin: 0 0 40px 0;
 }
 #pdf_list .grid-container div.sm.num {
   margin: 0;
