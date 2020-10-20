@@ -3,7 +3,8 @@
 *.swp
 /venv/
 .venv/
-# /static/
+/static/
+static/
 /media/
 media/
 /cache/
