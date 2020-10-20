@@ -569,6 +569,7 @@ td.cr {
 #pdf_list .grid-container div.sm.num {
   margin: 0;
   text-align: left;
+  width: 4%;
 }
 #pdf_page .cover {
   font-size: 98px;
@@ -595,11 +596,14 @@ td.cr {
 }
 #pdf_page .grid-container div.lg {
   width: 50%;
-  text-indent: 20px;
+  /*text-indent: 20px;*/
 }
 #pdf_page .grid-container div.md {
     width: 30%;
     float: right;
+}
+#pdf_page p.cr {
+  margin:3px 0 0 -10px !important;
 }
 @media all {
   #pdf_page .break { display: none; }
