@@ -13,5 +13,5 @@ db.sqlite3
 
 .vscode/
 
-# .env
-# /.env/
+.env
+/.env/
