@@ -3,7 +3,7 @@
 1. Install dependencies: 
     1. `pip install -r requirements.txt`
 
-2. Check if your package-config is working:
+2. 2021 update (if having errors installing pillow) Check if your package-config is working:
     1. `pkg-config zlib --libs`
     2. `brew install zlib`
     3. `export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/zlib/1.2.11/lib/pkgconfig/`
