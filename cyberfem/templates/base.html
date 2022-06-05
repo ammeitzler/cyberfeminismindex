@@ -9,14 +9,7 @@
     <head>
         <meta charset="utf-8" />
         <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- Cyberfeminism Index{% endif %}
-                {% endwith %}
-            {% endblock %}
+            Cyberfeminism Index
         </title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -60,6 +53,23 @@
     </head>
 
     <body id="main_content" class="{% block body_class %}{% endblock %} green-blur">
+        <div id="splashPage">
+            <div class="splashWhite"></div>
+            <div class="splashRow">
+                <div class="splashText">
+                    <span>Preorders available now!
+                        <a href="http://www.inventorypress.com/product/cyberfeminism-index" target="_blank">http://www.inventorypress.com/product/cyberfeminism-index</a>
+                    </span>
+                </div>
+
+                <div class="splashBook">
+                    <img src="{% static 'assets/cover.webp' %}"/>
+                </div>
+                <div id="splashX" onclick="closeSplash()">
+                    <img src="{% static 'assets/x.svg' %}"/>
+                </div>
+            </div>
+        </div>
         {% wagtailuserbar %}
         <div id="right_content" class="unopened">
             <div id="base_index_list">
