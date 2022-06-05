@@ -31,7 +31,6 @@ function openSplash() {
     $(".arrows").addClass("loading");
     $(".index_content").addClass("transparent");
     $('#sorting_text').show()
-    document.getElementById('index_list').style.pointerEvents = 'none';
 }
 
 function handleMenu(id, elm) {
