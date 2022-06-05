@@ -79,7 +79,7 @@
                 </table>
             </div>
             <div id="viewdownloads_list" class="hide">
-                {% for download in index_viewdownloads %}
+                {% for download in index_viewdownloads reversed %}
                 <div id="base_indexdownloads_table">
                     <p>
                         {{ download.quantity }}
