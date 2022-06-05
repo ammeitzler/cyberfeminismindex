@@ -52,6 +52,7 @@ select, button {
   -moz-box-sizing: border-box;
   position: absolute;
   font-family: 'arial_narrow';
+  display: none;
 }
 #splashPage .splashText {
   text-transform: uppercase;

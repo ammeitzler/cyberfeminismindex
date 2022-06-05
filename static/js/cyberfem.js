@@ -17,6 +17,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById("main_content").classList.remove("green-blur");
 });
 
+function openSplash(menu) {
+    if(sessionStorage.getItem('popState') != 'shown'){
+        $("#splashPage").show();
+        sessionStorage.setItem('popState','shown')
+        if(menu.value == "cyberfeminism index"){
+            $("#index_list").addClass("loading");
+            $(".arrows").addClass("loading");
+            $(".index_content").addClass("transparent");
+            $('#sorting_text').show()
+        }
+    }
+}
+
 function closeSplash() {
     $("#splashPage").hide();
     if (menu.value == "cyberfeminism index") {
@@ -24,13 +37,6 @@ function closeSplash() {
         $(".arrows").removeClass("loading");
         $(".index_content").removeClass("transparent");
     }
-}
-
-function openSplash() {
-    $("#index_list").addClass("loading");
-    $(".arrows").addClass("loading");
-    $(".index_content").addClass("transparent");
-    $('#sorting_text').show()
 }
 
 function handleMenu(id, elm) {
@@ -57,7 +63,6 @@ function getUrl() {
         internal_reference(pathHash)
         scroll_green()
         $('#splashPage .splashWhite').css({ opacity: 0.4 });
-        openSplash()
         break;
       case "orderby":
         menu.value = "cyberfeminism index";
@@ -87,6 +92,7 @@ function getUrl() {
       default:
         menu.value = str;
     }
+    openSplash(menu)
 
     // force all external links only to be target=_blank
     for (var links = external_links, i = 0, a; a = links[i]; i++) {
