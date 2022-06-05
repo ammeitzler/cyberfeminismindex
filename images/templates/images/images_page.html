@@ -1,63 +1,52 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags %}
-
 {% block body_class %}template-homepage{% endblock %}
-
 {% block content %}
-
 {% load static wagtailuserbar menu_tags %}
 {% get_menu "main" as navigation %}
-
 {% load wagtailcore_tags wagtailimages_tags %}
 {% load wagtailcore_tags wagtailimages_tags cache %}
-
 {% load wagtailmarkdown %}
 
 <script type="text/javascript">
     index_json = {{ json_dict|safe }};
 </script>
 
-
-  <div class="left_content" id="left_index">
-      <header>
-          <div class="menu_section">
-              <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)">
-                  <option disabled selected value></option>
-                  {% for item in navigation.menu_items.all %}
-                  <option value="{{ item.title }}">{{ item.title }}</option>
-                  {% endfor %}
-              </select>
-              <div id="green_box"></div>
-          </div>
-      </header>
-        <div id="top_location"></div>
-      
-      <div class="images_pg main_index_style gallery">
-        <!-- start cache -->
-            {% cache 604800 preview_index_image index_image.id %}
-                {% for index in image_entries %}
-              
-                  {% for loop_cycle in index.images_list.all %}
-                      {% image loop_cycle.images original as img %} 
-                      {% if loop_cycle.images is None %}
-                      {% else %}
-                          <div class="img_container">
-                              <img src="{{ img.url }}" height="500" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-                              <p class="caption">{{ loop_cycle.caption|markdown }}</p>
-                          </div>
-                      {% endif %}
-                  {% endfor %}
-                
+<div class="left_content" id="left_index">
+    <header>
+        <div class="menu_section">
+            <select id="menu" name="menu" onchange="javascript:handleMenu(id, this)">
+                <option disabled selected value></option>
+                {% for item in navigation.menu_items.all %}
+                <option value="{{ item.title }}">{{ item.title }}</option>
                 {% endfor %}
-            {% endcache %} 
-      </div>
-      <div class="bottom-buttons">
+            </select>
+            <div id="green_box"></div>
+        </div>
+    </header>
+    <div id="top_location"></div>
+    
+    <div class="images_pg main_index_style gallery">
+    <!-- start cache -->
+        {% cache 604800 preview_index_image index_image.id %}
+            {% for index in image_entries %}
+                {% for loop_cycle in index.images_list.all %}
+                    {% image loop_cycle.images original as img %} 
+                    {% if loop_cycle.images is None %}
+                    {% else %}
+                        <div class="img_container">
+                            <img src="{{ img.url }}" height="500" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+                            <p class="caption">{{ index.rownum }} {{ loop_cycle.caption|markdown }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endcache %} 
+    </div>
+    <div class="bottom-buttons">
         <button class="back_to_top" onclick="back_to_top('top_location')">back to top</button>
         <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
         <button class="submit"><a href="https://www.cyberfeminismindex.com/about/submit">submit</a></button>
-      </div>
-
-
     </div>
+</div>
 {% endblock %}
