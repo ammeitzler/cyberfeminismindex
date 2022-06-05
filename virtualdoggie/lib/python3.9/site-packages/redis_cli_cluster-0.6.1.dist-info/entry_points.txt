@@ -1,0 +1,3 @@
+[console_scripts]
+redis-cli-cluster = redis_cli_cluster.__main__:main
+

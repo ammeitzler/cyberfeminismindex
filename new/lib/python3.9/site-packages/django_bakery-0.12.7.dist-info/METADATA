@@ -1,0 +1,29 @@
+Metadata-Version: 2.0
+Name: django-bakery
+Version: 0.12.7
+Summary: A set of helpers for baking your Django site out as flat files
+Home-page: http://www.github.com/datadesk/django-bakery/
+Author: The Los Angeles Times Data Desk
+Author-email: datadesk@latimes.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: six (>1.5.2)
+Requires-Dist: boto3 (>=1.4.4)
+Requires-Dist: fs (>=2.0.17)
+
+UNKNOWN
+
+

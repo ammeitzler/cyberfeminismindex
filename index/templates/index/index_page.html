@@ -8,9 +8,9 @@
 
 {% load static wagtailuserbar menu_tags %}
 {% get_menu "main" as navigation %}
-
-{% load wagtailcore_tags wagtailimages_tags cache %}
 {% load wagtailmarkdown %}
+{% load wagtailcore_tags wagtailimages_tags cache %}
+
 
 <script type="text/javascript">
     index_json = {{ json_dict|safe }};
@@ -19,6 +19,10 @@
     var author_founder_str = "author_founder";
     var title_str = "title"
     var pub_date_str = "pub_date"
+</script>
+
+<script type="text/javascript">
+    index_json = {{ json_dict|safe }};
 </script>
 
 <div class="left_content" id="left_index">
@@ -40,9 +44,7 @@
 
     <div id="index_list" class="main_index_style">
         <div class="index_entry arrows grid-container">
-            <div class="sm num">
-               
-            </div>
+            <div class="sm num"></div>
             <div class="sm pub_date cr" onclick="sort_loading(pub_date_str)">
                 ↓
             </div>
@@ -171,10 +173,7 @@
           <button class="contact"><a href="mailto:mindyseu@gmail.com">contact</a></button>
           <button class="submit"><a href="https://www.cyberfeminismindex.com/about/submit">submit</a></button>
         </div>
-       
-   
     </div>
-    
 </div>
 
 

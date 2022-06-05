@@ -8,20 +8,10 @@
 <html class="no-js" lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %}- Cyberfeminism Index{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
+        <title>Cyberfeminism Index</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/cyberfem.css' %}">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -30,18 +20,8 @@
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-
           gtag('config', 'UA-177281044-1');
         </script>
-
-
-
-
-
-
-       <!--  {% block extra_css %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %} -->
 
         <!-- favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'css/favicon_package_v0.16/apple-touch-icon.png' %}">
@@ -57,9 +37,30 @@
         <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    
+        <script type="text/javascript" src="{% static 'js/cyberfem.js' %}"></script>
     </head>
 
     <body id="main_content" class="{% block body_class %}{% endblock %} green-blur">
+        
+        <div id="splashPage">
+            <div class="splashWhite"></div>
+            <div class="splashRow">
+                <div class="splashText">
+                    <span>Preorders available now!
+                        <a href="http://www.inventorypress.com/product/cyberfeminism-index" target="_blank">http://www.inventorypress.com/product/cyberfeminism-index</a>
+                    </span>
+                </div>
+
+                <div class="splashBook">
+                    <img src="{% static 'assets/cover.webp' %}"/>
+                </div>
+                <div id="splashX" onclick="closeSplash()">
+                    <img src="{% static 'assets/x.svg' %}"/>
+                </div>
+            </div>
+        </div>
+
         {% wagtailuserbar %}
         <div id="right_content" class="unopened">
             <div id="base_index_list">
@@ -85,16 +86,12 @@
             </div>
             <div id="trail_container">
                 <div id="trail_list"></div>
-
                 <div id="download-btns">
-
-                  <button id="download_btn" onclick="create_pdf()">download</button>
+                  <!-- <button id="download_btn" onclick="create_pdf()">download</button> -->
+                  <button id="download_btn" onclick="close_splash()">download!</button>
                   <button id="view-all-downloads" onclick="view_downloads()">view all downloads</button>
-
                 </div>   
-
             </div>
-
         </div>
         
 
@@ -102,7 +99,5 @@
         {% endblock %}
 
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/cyberfem.js' %}"></script>
     </body>
 </html>

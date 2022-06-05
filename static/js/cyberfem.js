@@ -1,4 +1,4 @@
-var base_url = window.location.origin;
+ 
 var base_host = window.location.hostname;
 let menu = document.getElementById('menu');
 var external_links = document.querySelectorAll('.external_links a')
@@ -16,6 +16,24 @@ var pdf_link = "https://cyberfem-pdf-renderer.herokuapp.com/api/render?emulateSc
 window.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById("main_content").classList.remove("green-blur");
 });
+
+
+function closeSplash() {
+    console.log("close")
+    $("#splashPage").hide();
+}
+
+function openSplash() {
+    console.log("open!")
+    $("#index_list").addClass("loading");
+    $(".arrows").addClass("loading");
+    $(".index_content").addClass("transparent");
+    $('#sorting_text').show()
+    document.getElementById('index_list').style.pointerEvents = 'none';
+}
+
+
+console.log("hello!!")
 
 function handleMenu(id, elm) {
     str = elm.value
@@ -451,3 +469,4 @@ function collection_url(col_name) {
 // on start calls
 getUrl()
 session_trail()
+openSplash()

@@ -1,0 +1,52 @@
+Metadata-Version: 2.0
+Name: redis-cli-cluster
+Version: 0.6.1
+Summary: cluster-aware redis-cli
+Home-page: https://github.com/TheKevJames/redis-cli-cluster.git
+Author: Kevin James
+Author-email: KevinJames@thekev.in
+License: MIT License
+Description-Content-Type: UNKNOWN
+Platform: Posix; MacOS X; Windows
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Dist: docopt (<1.0.0,>=0.6.0)
+Requires-Dist: redis-py-cluster (<2.0.0,>=1.0.0)
+
+redis-cli-cluster
+=================
+
+Cluster-aware re-implementation of `redis-cli`.
+
+Here's the problem:
+
+.. code-block:: bash
+
+    $ redis-cli -c -h node-0 set apple sauce
+    -> Redirected to slot [7092] located at 172.255.0.3:6379
+    OK
+    $ ctrl-D
+    $ redis-cli -c -h node-0 keys "*"
+    (empty list or set)
+    $ redis-cli -c -h node-1 keys "*"
+    1) "apple"
+
+Wouldn't it be great if that ``keys *`` worked the same was as in non-clustered
+mode?
+
+.. code-block:: bash
+
+    $ redis-cli-cluster -h node-0 set apple sauce
+    -> Redirected to slot [7092] located at 172.255.0.3:6379
+    OK
+    $ ctrl-D
+    $ redis-cli-cluster -h node-0 keys "*"
+    1) "apple"
+
+
