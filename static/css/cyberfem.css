@@ -5,6 +5,12 @@
       font-weight: normal;
       font-style: normal;
 }
+@font-face {
+  font-family: 'arial_narrow';
+  src: url('ArialNarrowMTStd.otf') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
 .cr { 
     font-family: 'arial_lc_symbol_regularRg';
     font-variant-ligatures: common-ligatures;
@@ -21,6 +27,7 @@ body,html {
 
 select, button {
   font-family: Arial, sans-serif;
+  margin: 0;
 }
 
 .grid-container {
@@ -32,6 +39,63 @@ select, button {
 
 .grid-container > div {
   text-align: left;
+}
+
+#splashPage {
+  height: 100vw;
+  width: 100%;
+  z-index: 9;
+  position: relative;
+  color: black;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: absolute;
+  font-family: 'arial_narrow';
+}
+#splashPage .splashText {
+  text-transform: uppercase;
+  width: 55%;
+  overflow-wrap: break-word;
+  padding-right: 2rem;
+  font-size: 1.4rem;
+  word-break: break-all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#splashPage a {
+  display: block;
+}
+#splashPage .splashWhite {
+  background-color: white;
+  opacity: 0.1;
+  height: 100vw;
+  position: absolute;
+  width: 100%;
+  opacity: 0.9;
+  z-index: -1;
+}
+#splashX {
+  width: 15%;
+  cursor: pointer;
+  text-align: right;
+}
+#splashX img {
+  width: 1.5rem;
+}
+#splashPage .splashBook {
+  width: 30%;
+}
+#splashPage .splashBook img {
+  width: 18rem;
+}
+#splashPage .splashRow {
+  display: flex;
+  flex-direction: row;
+  padding: 0 2rem;
+  margin-top: 5rem;
+  z-index: 9;
 }
 
 #main_content {
@@ -564,7 +628,7 @@ td.cr {
 
 #pdf_list .index_drawer .drawer_content {
   padding: 0;
-  margin: 0 0 40px 0;
+  margin: 0 0 70px 0;
 }
 #pdf_list .grid-container div.sm.num {
   margin: 0;
@@ -575,6 +639,7 @@ td.cr {
   font-size: 98px;
   text-shadow: 0 0 17px #00ff00;
   line-height: 1.1;
+  margin-left: 20px;
   color: transparent;
 }
 #pdf_page .left_content {
@@ -592,7 +657,7 @@ td.cr {
 }
 #pdf_page .grid-container div {
   text-align: left;
-  width: 6%;
+  width: 9%;
 }
 #pdf_page .grid-container div.lg {
   width: 50%;

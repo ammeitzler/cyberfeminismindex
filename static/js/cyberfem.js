@@ -17,6 +17,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById("main_content").classList.remove("green-blur");
 });
 
+function closeSplash() {
+    $("#splashPage").hide();
+    if (menu.value == "cyberfeminism index") {
+        $("#index_list").removeClass("loading");
+        $(".arrows").removeClass("loading");
+        $(".index_content").removeClass("transparent");
+    }
+}
+
+function openSplash() {
+    $("#index_list").addClass("loading");
+    $(".arrows").addClass("loading");
+    $(".index_content").addClass("transparent");
+    $('#sorting_text').show()
+    document.getElementById('index_list').style.pointerEvents = 'none';
+}
+
 function handleMenu(id, elm) {
     str = elm.value
     str = str.toLowerCase();
@@ -40,6 +57,8 @@ function getUrl() {
         var pathHash = pathHash_array[1];
         internal_reference(pathHash)
         scroll_green()
+        $('#splashPage .splashWhite').css({ opacity: 0.4 });
+        openSplash()
         break;
       case "orderby":
         menu.value = "cyberfeminism index";
