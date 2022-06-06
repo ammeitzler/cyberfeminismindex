@@ -63,11 +63,15 @@ select, button {
   font-size: 1.4rem;
   word-break: break-all;
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+#splashPage .splashText span {
+  max-width: 21.5rem;
+  text-align: left;
 }
 #splashPage a {
   display: block;
+  color: black;
 }
 #splashPage .splashWhite {
   background-color: white;
@@ -79,7 +83,7 @@ select, button {
   z-index: -1;
 }
 #splashX {
-  width: 15%;
+  width: 10%;
   cursor: pointer;
   text-align: right;
 }
@@ -87,10 +91,19 @@ select, button {
   width: 1.5rem;
 }
 #splashPage .splashBook {
-  width: 30%;
+  width: 40%;
+  display: flex;
+}
+#splashPage .splashBookMobile {
+  display: none;
+  width: 88%;
+  margin-top: 2rem;
+}
+#splashPage .splashBookMobile {
+  width: 19rem;
 }
 #splashPage .splashBook img {
-  width: 18rem;
+  width: 20rem;
 }
 #splashPage .splashRow {
   display: flex;
@@ -818,6 +831,26 @@ td.cr {
     height: auto !important;
     max-width: 450px !important;
     width: 450px !important;
+  }
+  #splashPage .splashBook {
+    display: none;
+  }
+  #splashPage .splashBookMobile {
+    display: flex;
+  }
+  #splashPage .splashBookMobile img {
+    width: 20rem;
+  }
+  #splashPage .splashText {
+    font-size: 1.2rem;
+    width: 88%;
+    flex-direction: column;
+  }
+  #splashPage .splashWhite {
+    height: 100%;
+  }
+  #splashPage {
+    height: 100%;
   }
 }
 
