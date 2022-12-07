@@ -1,21 +1,20 @@
-{% extends "base.html" %}
-
 {% load wagtailcore_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
-
-{% block content %}
 {% load static wagtailuserbar menu_tags %}
-{% get_menu "main" as navigation %}
 {% load wagtailcore_tags wagtailimages_tags cache %}
 {% load wagtailmarkdown %}
+{% load static %}
 
-<script type="text/javascript">
-    index_json = {{ json_dict|safe }};
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cyberfeminism Index</title>    
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pdf/print.css' %}"  media="print">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pdf/style.css' %}" media="screen">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
-	<div id="pdf_page">
-		<div class="left_content">
+		<div id="pdf_page">
 			<div class="cover">
 				Cyberfeminism
 				<br>Index
@@ -25,106 +24,93 @@
 				<br><span id="pdf_time"></span>
 			</div>
 
-			<div class="break"> </div>
+		{% if download_entries %}
+			<div class="interior">
+				{% endif %}
+				{% for index in download_entries %}
+				<div class="entry">
+					<table>
+						<tr>
+							<td class="cr">({{ index.rownum }})</td>
+							<td class="date">
+								{% if index.end_date == None and index.pub_date != None %}
+										{{ index.pub_date }}
+								{% endif %}
+								{% if index.end_date != None %}
+										{{ index.pub_date }}–<br>
+										{{ index.end_date }}
+								{% endif %}
+							</td>
+							<td class="title">{{ index.title }}</td>
+							<td class="author">
+								{% if index.author_founder != None %}
+									{{ index.author_founder|markdown }}
+								{% else %}
+								{% endif %}
+							</td>
+						</tr>
+					</table>
 
-			{% if download_entries %}
-				<div id="pdf_list" class="main_index_style">
-	       			{% endif %}
-					{% for index in download_entries %}
-	            		<div class="grid-container">
-		                    <div class="sm num"><p class="cr">({{ index.rownum }})</p></div>
-		                    <div class="sm">
-		                    	<p>
-	                          {% if index.end_date == None and index.pub_date != None %}
-	                              {{ index.pub_date }}
-	                          {% endif %}
-	                          {% if index.end_date != None %}
-	                              {{ index.pub_date }}–<br>
-	                              {{ index.end_date }}
-	                          {% endif %}
-	                        </p>
-		                	  </div>
-		                    <div class="lg"><p>{{ index.title }}</p></div>
-		                    <div class="md"><p>
-		                        {% if index.author_founder != None %}
-		                        {{ index.author_founder|markdown }}
-		                        {% else %}
-		                        {% endif %}
-		                    </p></div>
-		                </div>	
-		                <div class="index_drawer">
-		                    <div class="drawer_content">
-		                        <p class="about_text">{{ index.about|markdown }}</p>
-			                    {% if index.contributed_by != None %}
-		                        <p>{{ index.contributed_by }}</p>
-		                        {% endif %}
-		                        <p class="external_links">
-		                            {% if index.external_link != None %}
-		                            <a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
-		                            {% endif %}
-		                            {% if index.external_link_two != None %}
-		                            <a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
-		                            {% endif %}
-		                        </p>
-		                        {% if index.location != None %}
-		                        <p>{{ index.location }}</p>
-		                        {% endif %}
-		                        <div class="img_section">
-		                            {% for loop_cycle in index.images_list.all %}
-		                                {% image loop_cycle.images height-220 as img %} 
-		                                {% if loop_cycle.images is None %}
-		                                {% else %}
-		                                    <div class="img_container">
-		                                        <img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-		                                        <p class="caption">{{ loop_cycle.caption|markdown }}</p>
-		                                    </div>
-		                                {% endif %}
-		                            {% endfor %}
-		                        </div>
-		                        {% for cat in index.categories.all %}
-		                            {% if cat.name != None %}
-		                             <span>
-		                                <a href="{{ post.specific.get_parent.url }}/tag/{{ cat.slug }}">{{ cat.name}}</a>
-		                            </span>
-		                            {% endif %}
-		                        {% endfor %}
-		                    </div>
-	                	</div>
-					{% endfor %}
-		   	</div>
-		   	<div class="break"> </div>
-		   	<div class="print-description">
-				<p>Cyberfeminism Index is facilitated by Mindy Seu. The website was developed by Angeline Meitzler with frontend support from Janine Rosen and PDF support from Charles Broskoski. The typeface is Arial by Patricia Saunders and Robin Nicholas. Designed by Laura Coombs, the encircled cross-reference numbers use Arial’s metrics to make a complementary pairing. All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
+					<p>{{ index.about|markdown }}</p>
+					{% if index.contributed_by != None %}
+					<p>{{ index.contributed_by }}</p>
+					{% endif %}
+					<p>
+						{% if index.external_link != None %}
+						<a href="{{index.external_link}}" target="_blank">{{ index.external_link }}</a>
+						{% endif %}
+						{% if index.external_link_two != None %}
+						<a href="{{index.external_link_two}}" target="_blank">{{ index.external_link_two }}</a>
+						{% endif %}
+					</p>
+					{% if index.location != None %}
+					<p>{{ index.location }}</p>
+					{% endif %}
+					<div>
+						{% for loop_cycle in index.images_list.all %}
+								{% image loop_cycle.images height-220 as img %} 
+								{% if loop_cycle.images is None %}
+								{% else %}
+										<div class="img_container">
+												<img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
+												<div class="caption">{{ loop_cycle.caption|markdown }}</div>
+										</div>
+								{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			</div>	
+		{% endfor %}
+			<div class="back-cover">
+				<p>Cyberfeminism Index is gathered by Mindy Seu. The website was developed by Angeline Meitzler with frontend support from Janine Rosen. This font is Arial by Robin Nicholas and Patricia Saunders. The encircled cross-reference numbers are an adaptation of this font called Arial Symbol by Laura Coombs. All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
 			</div>
+		</div>
+		<script type="text/javascript">
+				index_json = {{ json_dict|safe }};
+		</script>
 
-			
-    </div>
-   
+		<script type="text/javascript">
+			function getTwoDigitDateFormat(monthOrDate) {
+				return (monthOrDate < 10) ? '0' + monthOrDate : '' + monthOrDate;
+			}
+			var now = new Date(); 
+				var date = now.getFullYear()+'-'+getTwoDigitDateFormat(now.getMonth() + 1)+'-'+getTwoDigitDateFormat(now.getDate()); 
+				var time = now.toLocaleTimeString('en-US', { hour12: false, 
+																								 hour: "numeric", 
+																								 minute: "numeric",
+																								 second: "numeric"});
+				document.getElementById("pdf_date").innerHTML = date
+				document.getElementById("pdf_time").innerHTML = time
+				var url = new URL(window.location);
+			var ids_str = url.searchParams.get("page_ptr_id");
+			var ids_array = ids_str.split(',');
+			if (ids_array.length == 1) {
+				var entries_html = ids_array.length + " entry"
+			} else {
+				var entries_html = ids_array.length + " entries"
+			}
+			document.getElementById("pdf_entries").innerHTML = entries_html
+		</script>
+	</body>
+</html>
 
-
-</script>
-
-<script type="text/javascript">
-	function getTwoDigitDateFormat(monthOrDate) {
-	  return (monthOrDate < 10) ? '0' + monthOrDate : '' + monthOrDate;
-	}
-	var now = new Date(); 
-  	var date = now.getFullYear()+'-'+getTwoDigitDateFormat(now.getMonth() + 1)+'-'+getTwoDigitDateFormat(now.getDate()); 
-  	var time = now.toLocaleTimeString('en-US', { hour12: false, 
-                                             hour: "numeric", 
-                                             minute: "numeric",
-                                          	 second: "numeric"});
-  	document.getElementById("pdf_date").innerHTML = date
-  	document.getElementById("pdf_time").innerHTML = time
-  	var url = new URL(window.location);
-	var ids_str = url.searchParams.get("page_ptr_id");
-	var ids_array = ids_str.split(',');
-	if (ids_array.length == 1) {
-		var entries_html = ids_array.length + " entry"
-	} else {
-		var entries_html = ids_array.length + " entries"
-	}
-	document.getElementById("pdf_entries").innerHTML = entries_html
-</script>
-
-{% endblock %}

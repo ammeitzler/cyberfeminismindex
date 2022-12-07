@@ -32,17 +32,20 @@
 	    <div class="collections_pg">
 		    	<div id="curator_list">
 		    		{% for index_col in index_collections %}
-			       	<input type="radio" name="collection" value="{{ index_col.slug }}" onclick="collection_url('{{index_col.slug}}')">
-					<label for="{{ index_col.slug }}">{{ index_col }}</label><br>
+						<div class="curator_list_items">
+							<input type="radio" name="collection" value="{{ index_col.slug }}" onclick="collection_url('{{index_col.slug}}')">
+							<label for="{{ index_col.slug }}">
+								{{ index_col }}
+							</label>
+						</div>
 					{% endfor %}
 				</div>
 				{% if curated_entries %}
 				<div id="collections_list" class="main_index_style">
-	       			{% endif %}
+	      {% endif %}
 					{% for index in curated_entries %}
 
 	            		<div class="grid-container" onclick="slideIndex_drawer(this, '{{index.slug}}'); add_to_trail('{{ index.slug }}')" id="{{index.slug}}">
-
 		                    <div class="sm num"><p class="cr">({{ index.rownum }})</p></div>
 		                    <div class="sm">
 		                    	<p>

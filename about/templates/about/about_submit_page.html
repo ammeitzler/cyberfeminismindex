@@ -31,6 +31,7 @@
 		  		<p><input name="names" type="names" placeholder="Names(s)" required><br></p>
 		  		<p><input name="links" type="links" placeholder="Link(s)"></p>
 		  		<p><input name="dates" type="dates" placeholder="Date(s)"></p>
+					<p class="hidden"><input name="date_submitted" id="about_form_date"></p>
 		  		<p></p>
 		  		<button type="submit">submit</button>
 			</form>
@@ -39,6 +40,7 @@
 			<!-- script for google sheets -->
 			<script>
 			  const scriptURL = 'https://script.google.com/macros/s/AKfycbwNbE7C9sXyei6NYQ-efXHg4gzCKTwKXHiMy-1diNi9hkOW-KZv/exec'
+				document.getElementById('about_form_date').value = new Date().toLocaleDateString();
 			  const form = document.forms['submit-to-google-sheet']
 
 			  form.addEventListener('submit', e => {

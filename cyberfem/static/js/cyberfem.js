@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function openSplash(menu) {
-    if(sessionStorage.getItem('popState') != 'shown'){
+    function setStorage() {
         $("#splashPage").show();
         sessionStorage.setItem('popState','shown')
         if(menu.value == "cyberfeminism index"){
@@ -26,6 +26,16 @@ function openSplash(menu) {
             $(".arrows").addClass("loading");
             $(".index_content").addClass("transparent");
             $('#sorting_text').show()
+        }
+    }
+    var pathArray = window.location.pathname.split('/');
+    if(sessionStorage.getItem('popState') != 'shown') {
+        if (typeof pathArray[1] !== 'undefined') {
+            if (pathArray[1] !== "pdf") {
+                setStorage();
+            }
+        } else {
+            setStorage();
         }
     }
 }
@@ -140,14 +150,14 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = yyyy + '-' + mm + '-' + dd;
-var trail_array_ids = []
 
 function create_pdf() {
+    var trail_array_ids = []
     for (i = 0; i < trail_array.length; i++) {
         let obj = index_json.find(o => o.slug === trail_array[i]);
         trail_array_ids.push(obj.page_ptr_id);
     }
-    str = pdf_link + base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
+    str = base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
     window.open(str, '_blank');
 }
 
@@ -263,6 +273,8 @@ function internal_ligatures(selected_drawer) {
     if(menu.value == "images") {
         var node = selected_drawer.children[0].children[4];
         var n = node.children
+        console.log("HERE")
+        console.log(n)
     }
     if(menu.value == "about") {
         var n = []
@@ -393,7 +405,7 @@ function add_tag_button(selected_tag) {
 function enlarge_img(el) {
     if (el.classList.contains('enlarge_img')) {
         el.classList.remove("enlarge_img");
-        caption = el.nextElementSibling.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "none";
     } else {
         el.classList.add("enlarge_img")
@@ -403,7 +415,7 @@ function enlarge_img(el) {
             // img_container = el.parentElement;
             // img_container.style.display = "block";
         }
-        caption = el.nextElementSibling.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "block";
         caption.style.color = "black";
         caption.style.width = img_width+"px";

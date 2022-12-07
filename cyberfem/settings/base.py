@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail_clear_cache',
 
     'modelcluster',
     'taggit',
