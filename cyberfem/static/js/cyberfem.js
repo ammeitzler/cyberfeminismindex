@@ -263,6 +263,8 @@ function internal_ligatures(selected_drawer) {
     if(menu.value == "images") {
         var node = selected_drawer.children[0].children[4];
         var n = node.children
+        console.log("HERE")
+        console.log(n)
     }
     if(menu.value == "about") {
         var n = []
@@ -393,7 +395,7 @@ function add_tag_button(selected_tag) {
 function enlarge_img(el) {
     if (el.classList.contains('enlarge_img')) {
         el.classList.remove("enlarge_img");
-        caption = el.nextElementSibling.nextElementSibling
+        caption = el.nextElementSibling
         caption.style.display = "none";
     } else {
         el.classList.add("enlarge_img")
@@ -403,7 +405,7 @@ function enlarge_img(el) {
             // img_container = el.parentElement;
             // img_container.style.display = "block";
         }
-        caption = el.nextElementSibling.nextElementSibling
+        caption = el.nextElementSibling
         caption.style.display = "block";
         caption.style.color = "black";
         caption.style.width = img_width+"px";

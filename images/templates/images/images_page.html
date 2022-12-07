@@ -36,7 +36,14 @@
                     {% else %}
                         <div class="img_container">
                             <img src="{{ img.url }}" height="500" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-                            <p class="caption">{{ index.rownum }} {{ loop_cycle.caption|markdown }}</p>
+                            <span class="caption"> 
+                                <span class="imageIndex tooltip">
+                                    <a href="https://www.cyberfeminismindex.com/#/{{index.slug}}">
+                                        <span class="cr">({{ index.rownum }})</span>
+                                    </a>
+                                </span>
+                                {{ loop_cycle.caption|markdown }}
+                            </span>
                         </div>
                     {% endif %}
                 {% endfor %}

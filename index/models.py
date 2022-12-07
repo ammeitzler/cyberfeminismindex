@@ -225,7 +225,7 @@ class ImagesOrderable(Orderable):
     """This allows us to select one or more blog authors from Snippets."""
     page = ParentalKey('index.IndexDetailPage', on_delete=models.CASCADE, related_name='images_list')
     images = models.ForeignKey("wagtailimages.Image", null=True, blank=True, on_delete=models.CASCADE)
-    caption = models.CharField("caption", max_length=255, null=True, blank=True)
+    caption = models.CharField("caption", max_length=500, null=True, blank=True)
     custom_alt = models.CharField("Custom Alt", max_length=255, null=True, blank=True)
 
     panels = [
