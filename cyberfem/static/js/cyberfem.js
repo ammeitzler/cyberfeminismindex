@@ -150,9 +150,9 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = yyyy + '-' + mm + '-' + dd;
-var trail_array_ids = []
 
 function create_pdf() {
+    var trail_array_ids = []
     for (i = 0; i < trail_array.length; i++) {
         let obj = index_json.find(o => o.slug === trail_array[i]);
         trail_array_ids.push(obj.page_ptr_id);
