@@ -405,7 +405,7 @@ function add_tag_button(selected_tag) {
 function enlarge_img(el) {
     if (el.classList.contains('enlarge_img')) {
         el.classList.remove("enlarge_img");
-        caption = el.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "none";
     } else {
         el.classList.add("enlarge_img")
@@ -415,7 +415,7 @@ function enlarge_img(el) {
             // img_container = el.parentElement;
             // img_container.style.display = "block";
         }
-        caption = el.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "block";
         caption.style.color = "black";
         caption.style.width = img_width+"px";

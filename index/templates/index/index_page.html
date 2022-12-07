@@ -104,7 +104,7 @@
                                 {% else %}
                                     <div class="img_container">
                                         <img src="{{ img.url }}" height="500" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-                                        <p>{{ loop_cycle.caption|markdown }}</p>
+                                        <p class="img_caption">{{ loop_cycle.caption|markdown }}</p>
                                     </div>
                                 {% endif %}
                             {% endfor %}

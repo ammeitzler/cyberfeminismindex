@@ -1,16 +1,16 @@
 {% load wagtailcore_tags %}
-{% block content %}
 {% load static wagtailuserbar menu_tags %}
 {% load wagtailcore_tags wagtailimages_tags cache %}
 {% load wagtailmarkdown %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Cyberfeminism Index</title>    
-	<link rel="stylesheet" type="text/css" href="{% static 'css/print.css' %}"  media="print">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/css.css' %}" media="screen">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pdf/print.css' %}"  media="print">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/pdf/style.css' %}" media="screen">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -73,13 +73,14 @@
 								{% else %}
 										<div class="img_container">
 												<img src="{{ img.url }}" height="{{ img.height }}" alt="{{ loop_cycle.custom_alt }}" onclick="enlarge_img(this)">
-												<p class="caption">{{ loop_cycle.caption|markdown }}</p>
+												<div class="caption">{{ loop_cycle.caption|markdown }}</div>
 										</div>
 								{% endif %}
 						{% endfor %}
 					</div>
 				</div>
 			</div>	
+		{% endfor %}
 			<div class="back-cover">
 				<p>Cyberfeminism Index is gathered by Mindy Seu. The website was developed by Angeline Meitzler with frontend support from Janine Rosen. This font is Arial by Robin Nicholas and Patricia Saunders. The encircled cross-reference numbers are an adaptation of this font called Arial Symbol by Laura Coombs. All entry descriptions are excerpts; please refer to the credit at the bottom of each page.</p>
 			</div>
@@ -111,7 +112,5 @@
 			document.getElementById("pdf_entries").innerHTML = entries_html
 		</script>
 	</body>
-	</html>
-
-
+</html>
 
