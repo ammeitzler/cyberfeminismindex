@@ -659,10 +659,11 @@ td.cr {
   /*-webkit-transition: all 500ms ease-in-out;*/
 }
 
-
+#pdf_list .pdf_section {
+  padding: 22px 0;
+}
 #pdf_list .index_drawer .drawer_content {
   padding: 0;
-  margin: 0 0 70px 0;
 }
 #pdf_list .grid-container div.sm.num {
   margin: 0;
@@ -677,7 +678,7 @@ td.cr {
   color: transparent;
 }
 #pdf_page .left_content {
-  height: auto;
+  padding: 22px;
 }
 #pdf_page .print-description {
   margin-top: 120px;
@@ -702,7 +703,7 @@ td.cr {
     float: right;
 }
 #pdf_page p.cr {
-  margin:3px 0 0 -10px !important;
+  margin:3px 0 0 0 !important;
 }
 @media all {
   #pdf_page .break { display: none; }

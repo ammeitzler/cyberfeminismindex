@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function openSplash(menu) {
-    if(sessionStorage.getItem('popState') != 'shown'){
+    function setStorage() {
         $("#splashPage").show();
         sessionStorage.setItem('popState','shown')
         if(menu.value == "cyberfeminism index"){
@@ -26,6 +26,16 @@ function openSplash(menu) {
             $(".arrows").addClass("loading");
             $(".index_content").addClass("transparent");
             $('#sorting_text').show()
+        }
+    }
+    var pathArray = window.location.pathname.split('/');
+    if(sessionStorage.getItem('popState') != 'shown') {
+        if (typeof pathArray[1] !== 'undefined') {
+            if (pathArray[1] !== "pdf") {
+                setStorage();
+            }
+        } else {
+            setStorage();
         }
     }
 }
@@ -147,7 +157,7 @@ function create_pdf() {
         let obj = index_json.find(o => o.slug === trail_array[i]);
         trail_array_ids.push(obj.page_ptr_id);
     }
-    str = pdf_link + base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
+    str = base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
     window.open(str, '_blank');
 }
 
