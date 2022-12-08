@@ -158,7 +158,15 @@ function create_pdf() {
         trail_array_ids.push(obj.page_ptr_id);
     }
     str = base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
-    window.open(str, '_blank');
+
+    function loadPDFiframe() {
+        $("<iframe>")                             
+            .hide()                               
+            .attr("src", str)
+            .appendTo("body");                    
+    }
+    loadPDFiframe()
+    // window.open(str, '_blank');
 }
 
 function view_downloads() {
@@ -302,8 +310,8 @@ function internal_ligatures(selected_drawer) {
 
     if (node.classList != "external_links") {
         for (i = 0; i < n.length; i++) { 
-            console.log("here")
-            console.log(n)
+            // console.log("here")
+            // console.log(n)
             if(n[i] && n[i].nodeName == "A" && n[i].text == "(x)") {
                 var inline_link = n[i].href
                 var parts = inline_link.split('/');

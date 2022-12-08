@@ -150,14 +150,23 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = yyyy + '-' + mm + '-' + dd;
-var trail_array_ids = []
 
 function create_pdf() {
+    var trail_array_ids = []
     for (i = 0; i < trail_array.length; i++) {
         let obj = index_json.find(o => o.slug === trail_array[i]);
         trail_array_ids.push(obj.page_ptr_id);
     }
     str = base_url + '/pdf/?page_ptr_id=' + trail_array_ids;
+    // str = "https://www.cyberfeminismindex.com" +  '/pdf/?page_ptr_id=' + trail_array_ids;
+
+    function loadPDFiframe() {
+        $("<iframe>")                             
+            .hide()                               
+            .attr("src", str)
+            .appendTo("body");                    
+    }
+    loadPDFiframe()
     window.open(str, '_blank');
 }
 
@@ -302,8 +311,8 @@ function internal_ligatures(selected_drawer) {
 
     if (node.classList != "external_links") {
         for (i = 0; i < n.length; i++) { 
-            console.log("here")
-            console.log(n)
+            // console.log("here")
+            // console.log(n)
             if(n[i] && n[i].nodeName == "A" && n[i].text == "(x)") {
                 var inline_link = n[i].href
                 var parts = inline_link.split('/');
@@ -405,7 +414,7 @@ function add_tag_button(selected_tag) {
 function enlarge_img(el) {
     if (el.classList.contains('enlarge_img')) {
         el.classList.remove("enlarge_img");
-        caption = el.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "none";
     } else {
         el.classList.add("enlarge_img")
@@ -415,7 +424,7 @@ function enlarge_img(el) {
             // img_container = el.parentElement;
             // img_container.style.display = "block";
         }
-        caption = el.nextElementSibling
+        caption = el.nextElementSibling.nextElementSibling;
         caption.style.display = "block";
         caption.style.color = "black";
         caption.style.width = img_width+"px";
